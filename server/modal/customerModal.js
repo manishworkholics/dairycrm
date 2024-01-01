@@ -10,8 +10,9 @@ const CustomerSchema = new mongoose.Schema({
     },
     product: [
         {
-            name: { type: String },
-            quantity: { type: String },
+            id: { type: String },
+            value1: { type: String },
+            value2: { type: String },
         }
     ],
     adress: {

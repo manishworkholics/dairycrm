@@ -36,7 +36,7 @@ const Cutomer = () => {
     const fetchdata = fetch('http://localhost:4000/api/v1/add-customer', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, number: number, adress: adress, product: more }),
+      body: JSON.stringify({ name: name, number: number, adress: adress, product: inputList }),
     })
     const response = await fetchdata;
     await response.json();
@@ -44,7 +44,7 @@ const Cutomer = () => {
       alert('cutomer add successfully')
       handleClose();
       getcustomer();
-      setmore([]);
+      setInputList([{ id: 1, value1: '', value2: '' },])
       setPost({ name: '', number: '', adress: '' })
     } else {
       alert("Invalid Credentials");
@@ -77,7 +77,6 @@ const Cutomer = () => {
       })
   }
 
-
   function deleteproduct(_id) {
     fetch(`http://localhost:4000/api/v1/delete-customer/${_id}`, {
       method: "DELETE"
@@ -93,20 +92,27 @@ const Cutomer = () => {
   }, [])
 
 
-  // add more code
+  const [inputList, setInputList] = useState([{ id: 1, value1: '', value2: '' },]);
 
-  const [inputdata, setinputdata] = useState({ name: '', quantity: '' });
-  const [more, setmore] = useState([]);
+  // Add new input fields
+  const handleAddInput = () => {
+    const newId = inputList[inputList.length - 1].id + 1;
+    setInputList([...inputList, { id: newId, value1: '', value2: '' }]);
+  };
 
-  function handlemore(e) {
-    setinputdata({ ...inputdata, [e.target.name]: e.target.value })
-  }
+  // Remove input fields
+  const handleRemoveInput = (id) => {
+    const updatedList = inputList.filter((item) => item.id !== id);
+    setInputList(updatedList);
+  };
 
-  let { name, quantity } = inputdata
-  function addmore() {
-    setmore([...more, { name, quantity }])
-  }
-
+  // Handle input change for both fields
+  const handleInputChange = (id, field, event) => {
+    const newInputList = inputList.map((item) =>
+      item.id === id ? { ...item, [field]: event.target.value } : item
+    );
+    setInputList(newInputList);
+  };
 
   return (
     <>
@@ -173,46 +179,50 @@ const Cutomer = () => {
                   <input type="text" className="form-control" id="name" placeholder="Cutomer address" name="adress" value={post.adress} onChange={handleChange} />
                 </div>
 
-                <div className="mb-3 mt-3" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <div style={{ width: '120px' }}>
-                    <label htmlFor="name" className="form-label" >product:</label>
-                    <input type="text" className="form-control" id="name" placeholder="product" name="name" onChange={handlemore} />
-                  </div>
-                  <div style={{ width: '120px' }}>
-                    <label htmlFor="name" className="form-label">quantity:</label>
-                    <input type="text" className="form-control" id="quantity" placeholder="quantity" name="quantity" onChange={handlemore} />
-                  </div>
-                  <div style={{ width: '120px' }}>
-                    <label htmlFor="name" className="form-label" >Add more:</label>
-                    <button className="btn btn-primary" onClick={addmore} >Add </button>
-                  </div>
-                </div>
                 <div className="mb-3 mt-3">
-                  <table class="table">
+                  <table>
                     <thead>
                       <tr>
-                        <th>product</th>
-                        <th>quantity</th>
-                        <th>action</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {more.map((val, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{val.name}</td>
-                            <td>{val.quantity}</td>
-                            <td>action</td>
-                          </tr>
-                        )
-                      })}
+                      {inputList.map((item, index) => (
+                        <tr key={index}>
+                          <td>
+                            <input
+                              type="text"
+                              value={item.value1}
+                              onChange={(e) => handleInputChange(item.id, 'value1', e)}
+                              placeholder="product"
+                              style={{width:'120px'}}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              value={item.value2}
+                              onChange={(e) => handleInputChange(item.id, 'value2', e)}
+                              placeholder="quantity"
+                              style={{width:'120px'}}
+                            />
+                          </td>
+                          <td className='w-50'>
+                            {inputList.length > 1 && (
+                              <button onClick={() => handleRemoveInput(item.id)}>Remove</button>
+                            )}
+                            {index === inputList.length - 1 && (
+                              <button onClick={handleAddInput}>Add More</button>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
-
-
                 <button type="submit" className="btn btn-primary" onClick={addcustomer}>Submit</button>
-
               </div>
             </div>
           </div>
