@@ -22,7 +22,7 @@ const DailyEntry = () => {
       <div className='container mt-5'>
         <div className='row'>
           <div className='col-md-12'>
-            <h1 className='text-center mb-5'>Cutomer</h1>
+            <h1 className='text-center mb-5'>Customer</h1>
 
             <table className="table table-hover">
               <thead>
