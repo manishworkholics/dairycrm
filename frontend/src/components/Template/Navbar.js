@@ -20,16 +20,19 @@ const Navbar = () => {
                                 <Link className="nav-link" to="/home/customer">Customer</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/home/report">DailyEntry</Link>
+                                <Link className="nav-link" to="/home/daily-entry">DailyEntry</Link>
                             </li>
-                            <li className="nav-item dropdown">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/home/report">Reports</Link>
+                            </li>
+                            {/* <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">Dropdown</Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="#">Link</Link></li>
                                     <li><Link className="dropdown-item" to="#">Link</Link></li>
                                     <li><Link className="dropdown-item" to="#">Link</Link></li>
                                 </ul>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

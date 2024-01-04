@@ -64,3 +64,45 @@ exports.deletecustomer = async (req, res) => {
         res.send(error)
     }
 }
+
+exports.addentry = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { date, products } = req.body;
+    
+        const buyer = await customer.findById(id);
+        if (!buyer) return res.status(404).send('Buyer not found');
+    
+        buyer.dailyEntries.push({ date, products });
+        await buyer.save();
+    
+        res.status(200).send(buyer);
+      } catch (error) {
+        res.status(400).send(error);
+      }
+}
+
+
+exports.report = async (req, res) => {
+    try {
+        const { id } = req.params;
+    
+        const buyer = await customer.findById(id);
+        if (!buyer) return res.status(404).send('Buyer not found');
+    
+        const monthlyReport = buyer.dailyEntries.reduce((acc, entry) => {
+          const month = new Date(entry.date).getMonth() + 1; // 1-based month
+    
+          entry.products.forEach(product => {
+            acc[month] = acc[month] || {};
+            acc[month][product.type] = (acc[month][product.type] || 0) + product.quantity;
+          });
+    
+          return acc;
+        }, {});
+    
+        res.status(200).send(monthlyReport);
+      } catch (error) {
+        res.status(400).send(error);
+      }
+}

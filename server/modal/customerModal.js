@@ -15,6 +15,12 @@ const CustomerSchema = new mongoose.Schema({
             value2: { type: String },
         }
     ],
+    dailyEntries: [
+        {
+            date: Date,
+            products: []
+        }
+    ],
     adress: {
         type: String
     },
