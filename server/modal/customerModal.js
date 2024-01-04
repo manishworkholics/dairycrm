@@ -11,8 +11,8 @@ const CustomerSchema = new mongoose.Schema({
     product: [
         {
             id: { type: String },
-            value1: { type: String },
-            value2: { type: String },
+            product_name: { type: mongoose.Schema.Types.ObjectId,ref: "Product" },
+            product_quantity: { type: String },
         }
     ],
     dailyEntries: [

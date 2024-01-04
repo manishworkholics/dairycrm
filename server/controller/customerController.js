@@ -15,7 +15,7 @@ exports.addcustomer = async (req, res) => {
 
 exports.getcustomer = async (req, res) => {
     try {
-        const data = await customer.find()
+        const data = await customer.find().populate('product.product_name')
         res.status(200).json({
             success: true,
             data

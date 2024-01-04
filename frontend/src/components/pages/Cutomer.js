@@ -44,7 +44,7 @@ const Cutomer = () => {
       alert('cutomer add successfully')
       handleClose();
       getcustomer();
-      setInputList([{ id: 1, value1: '', value2: '' },])
+      setInputList([{ id: 1, product_name: '', product_quantity: '' },])
       setPost({ name: '', number: '', adress: '' })
     } else {
       alert("Invalid Credentials");
@@ -92,12 +92,12 @@ const Cutomer = () => {
   }, [])
 
 
-  const [inputList, setInputList] = useState([{ id: 1, value1: '', value2: '' },]);
+  const [inputList, setInputList] = useState([{ id: 1, product_name: '', product_quantity: '' },]);
 
   // Add new input fields
   const handleAddInput = () => {
     const newId = inputList[inputList.length - 1].id + 1;
-    setInputList([...inputList, { id: newId, value1: '', value2: '' }]);
+    setInputList([...inputList, { id: newId, product_name: '', product_quantity: '' }]);
   };
 
   // Remove input fields
@@ -194,8 +194,8 @@ const Cutomer = () => {
                           <td>
                             <input
                               type="text"
-                              value={item.value1}
-                              onChange={(e) => handleInputChange(item.id, 'value1', e)}
+                              value={item.product_name}
+                              onChange={(e) => handleInputChange(item.id, 'product_name', e)}
                               placeholder="product"
                               style={{width:'120px'}}
                             />
@@ -203,8 +203,8 @@ const Cutomer = () => {
                           <td>
                             <input
                               type="text"
-                              value={item.value2}
-                              onChange={(e) => handleInputChange(item.id, 'value2', e)}
+                              value={item.product_quantity}
+                              onChange={(e) => handleInputChange(item.id, 'product_quantity', e)}
                               placeholder="quantity"
                               style={{width:'120px'}}
                             />
