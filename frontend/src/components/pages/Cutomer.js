@@ -119,36 +119,40 @@ const Cutomer = () => {
       <div className='container mt-5'>
         <div className='row'>
           <div className='col-md-12'>
-            <h1 className='text-center mb-5'>Cutomer</h1>
-            <button type="button" className="btn btn-info" onClick={handleShow}>Add</button>
-            <table className="table table-hover">
-              <thead>
-                <tr>
-                  <th>S.no</th>
-                  <th>Name</th>
-                  <th>Number</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.data?.map((val, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{val.name}</td>
-                      <td>{val.number}</td>
-                      <td>{dateFormat(val.createdAt)}</td>
-                      <td>
-                        <button type="button" className="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit</button>
-                        <button type="button" className="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete</button>
-
-                      </td>
+            <h1 className='text-center mb-5 page-heading'>Cutomer</h1>
+            <button type="button" className="btn btn-info px-5 my-4" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
+            <div className="table-card">
+              <div className="table-responsive">
+                <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>S.no</th>
+                      <th>Name</th>
+                      <th>Number</th>
+                      <th>Date</th>
+                      <th>Action</th>
                     </tr>
-                  )
-                })}
-              </tbody>
-            </table>
+                  </thead>
+                  <tbody>
+                    {data?.data?.map((val, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{val.name}</td>
+                          <td>{val.number}</td>
+                          <td>{dateFormat(val.createdAt)}</td>
+                          <td className='d-flex'>
+                            <button type="button" className="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span class="material-symbols-outlined">edit</span></button>
+                            <button type="button" className="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
+
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -197,7 +201,7 @@ const Cutomer = () => {
                               value={item.product_name}
                               onChange={(e) => handleInputChange(item.id, 'product_name', e)}
                               placeholder="product"
-                              style={{width:'120px'}}
+                              style={{ width: '120px' }}
                             />
                           </td>
                           <td>
@@ -206,7 +210,7 @@ const Cutomer = () => {
                               value={item.product_quantity}
                               onChange={(e) => handleInputChange(item.id, 'product_quantity', e)}
                               placeholder="quantity"
-                              style={{width:'120px'}}
+                              style={{ width: '120px' }}
                             />
                           </td>
                           <td className='w-50'>

@@ -4,8 +4,26 @@
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    line-height: normal;
 }
 
+.navbar-container{
+    background: #d5e9f1;
+}
+.navbar{
+    background: #d5e9f1;
+}
+.nav-link{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0px 10px;
+}
+.form-control:focus{
+    box-shadow: none;
+    outline: #d5e9f1;
+    border-color: #d5e9f1;
+}
 .table-card{
     padding: 30px;
     background: #d5e9f1;
@@ -15,6 +33,8 @@
     margin-bottom: 0;
     border-radius: 16px;
     overflow: hidden;
+    background: #fff;
+    width: 100%;
 }
 .page-heading{
     background: #d5e9f1;
@@ -23,4 +43,40 @@
     font-weight: 600;
     line-height: normal;
     letter-spacing: 1px;
+}
+.btn{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+}
+.btn span{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 10px;
+}
+
+@media only screen and  (max-width:600px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 56px;
+        left: 0;
+        background: #f7f7f7;
+        width: 100%;
+        height: fit-content;
+        padding: 15px 20px;
+        border-radius: 0px 0px 20px 20px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .table-card .table{
+        width: max-content;
+    }
+    .table-card {
+        padding: 16px;
+        border-radius: 26px;
+    }
 }
