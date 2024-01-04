@@ -32,8 +32,15 @@ const DailyEntry = () => {
                       <th>Name</th>
                       <th>Product</th>
                       <th>Unit</th>
+                      <th>Today Quantity</th>
                       <th>Quantity</th>
-                      <th>Total Qty</th>
+                      <th>Quantity</th>
+                      <th>Quantity</th>
+                      <th>Quantity</th>
+                      <th>Quantity</th>
+                      <th>Quantity</th>
+                      <th>Quantity</th>
+
                     </tr>
                   </thead>
                   <tbody>
@@ -54,12 +61,17 @@ const DailyEntry = () => {
                           })}</td>
                           <td>{val?.product?.map((val) => {
                             return (
-                              <input type="text" class="form-control mb-3" id="text" value={val?.product_quantity} name="text" />
+                              <input type="text" class="form-control" id="text" value={val?.product_quantity} name="text" />
 
                             )
                           })}</td>
-                          <td><input type="text" class="form-control mb-3" id="text" name="text" /></td>
-
+                          {val?.dailyEntries[0] ? <td>{val?.dailyEntries[0]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
+                          {val?.dailyEntries[1] ? <td>{val?.dailyEntries[1]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
+                          {val?.dailyEntries[2] ? <td>{val?.dailyEntries[2]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
+                          {val?.dailyEntries[3] ? <td>{val?.dailyEntries[3]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
+                          {val?.dailyEntries[4] ? <td>{val?.dailyEntries[4]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
+                          {val?.dailyEntries[5] ? <td>{val?.dailyEntries[5]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
+                          {val?.dailyEntries[6] ? <td>{val?.dailyEntries[6]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
                         </tr>
                       )
                     })}
