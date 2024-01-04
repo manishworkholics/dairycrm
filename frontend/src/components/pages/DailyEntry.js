@@ -61,7 +61,7 @@ const DailyEntry = () => {
                           })}</td>
                           <td>{val?.product?.map((val) => {
                             return (
-                              <input type="text" class="form-control" id="text" value={val?.product_quantity} name="text" />
+                              <input type="text" class="form-control my-2" id="text" value={val?.product_quantity} name="text" />
 
                             )
                           })}</td>
