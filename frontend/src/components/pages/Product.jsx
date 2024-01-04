@@ -106,38 +106,40 @@ const Product = () => {
       <div className='container mt-5'>
         <div className='row'>
           <div className='col-md-12'>
-            <h1 className='text-center mb-5'>Products</h1>
-            <button type="button" class="btn btn-info" onClick={handleShow}>Add</button>
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>S.no</th>
-                  <th>Product</th>
-                  <th>Product Rate</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.product?.map((val, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{val.name}</td>
-                      <td>{val.price}/{val.unit}</td>
-                      <td>{dateFormat(val.createdAt)}</td>
-                      <td>
-                        <button type="button" class="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit</button>
-                        <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete</button>
+            <h1 className='text-center mb-5 page-heading'>Products</h1>
+            <button type="button" class="btn btn-info px-5 my-4" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
+            <div className="table-card">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>S.no</th>
+                    <th>Product</th>
+                    <th>Product Rate</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.product?.map((val, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{val.name}</td>
+                        <td>{val.price}/{val.unit}</td>
+                        <td>{dateFormat(val.createdAt)}</td>
+                        <td>
+                          <button type="button" class="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span><i class="fa-solid fa-pen-to-square"></i></span></button>
+                          <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span><i class="fa-solid fa-trash"></i></span></button>
 
-                      </td>
-                    </tr>
-                  )
-                })}
+                        </td>
+                      </tr>
+                    )
+                  })}
 
 
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
