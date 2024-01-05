@@ -40,7 +40,7 @@ const DailyEntry = () => {
                       <th>Quantity</th>
                       <th>Quantity</th>
                       <th>Quantity</th>
-                      <th>Quantity</th>
+                    
              
                     </tr>
                   </thead>
