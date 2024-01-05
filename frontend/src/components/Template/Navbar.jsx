@@ -9,7 +9,7 @@ const Navbar = () => {
 
     return (
         <>
-            {/* <div className="main-container navbar-container">
+            <div className="main-container navbar-container">
                 <div className="container ">
                     <nav className="navbar navbar-expand-sm">
                         <div className="container-fluid">
@@ -36,9 +36,9 @@ const Navbar = () => {
                         </div>
                     </nav>
                 </div>
-            </div> */}
+            </div>
 
-            <nav className="navbar navbar-expand px-3 py-0 border-bottom shadow">
+            {/* <nav className="navbar navbar-expand px-3 py-0 border-bottom shadow">
                 <div className="container-fluid">
                     <Link to="/" className='nav-brand me-5'>
                         <h2>Logo</h2>
@@ -70,7 +70,7 @@ const Navbar = () => {
                         <span className=""><i class="fa-solid fa-bars-staggered"></i></span>
                     </button>
                 </div>
-            </nav>
+            </nav> */}
 
 
         </>
