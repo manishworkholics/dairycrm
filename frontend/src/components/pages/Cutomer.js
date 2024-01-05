@@ -235,7 +235,7 @@ const Cutomer = () => {
                               <div> <button className="btn btn-secondary" onClick={() => handleRemoveInput(item.id)}>Remove</button></div>
                             )}
                             {index === inputList.length - 1 && (
-                               <div> <button className='btn btn-success ' onClick={handleAddInput}>Add More</button></div>
+                               <div> <button className='btn btn-success mt-3' onClick={handleAddInput}>Add More</button></div>
                             )}
                           </td>
                         </tr>
