@@ -1,11 +1,15 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
+const toggler = () => {
+    document.querySelector("#sidebar").classList.toggle("collapsed")
+}
+
 const Navbar = () => {
 
     return (
         <>
-            <div className="main-container navbar-container">
+            {/* <div className="main-container navbar-container">
                 <div className="container ">
                     <nav className="navbar navbar-expand-sm">
                         <div className="container-fluid">
@@ -27,20 +31,48 @@ const Navbar = () => {
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/home/report">Reports</Link>
                                     </li>
-                                    {/* <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">Dropdown</Link>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="#">Link</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Link</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Link</Link></li>
-                                </ul>
-                            </li> */}
                                 </ul>
                             </div>
                         </div>
                     </nav>
                 </div>
-            </div>
+            </div> */}
+
+            <nav className="navbar navbar-expand px-3 py-0 border-bottom shadow">
+                <div className="container-fluid">
+                    <Link to="/" className='nav-brand me-5'>
+                        <h2>Logo</h2>
+                    </Link>
+                    <button className='nav-togle-btn hide-mobile' id='sidebar-toggle' type='button' onClick={toggler}>
+                        <span className=""><i class="fa-solid fa-bars-staggered"></i></span>
+                    </button>
+                    <div className="navbar-collapse navbar py-0">
+                        <ul className="navbar-nav align-items-center">
+                            <li className="nav-item">
+                                <form class="d-flex position-relative" role="search">
+                                    <input class="form-control me-2 nav-searchbar rounded-pill" type="search" placeholder="Search here..." aria-label="Search" />
+                                    <button class="btn search-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </form>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <Link to="/" data-bs-toggle="dropdown" className='nav-icon pe-md-0 nav-link'>
+                                    <img src={require("../img/profile-img.jpg")} className='avatar profile img-fluid rounded' alt="" />
+                                </Link>
+                                <div className="dropdown-menu dropdown-menu-end">
+                                    <Link to="/" className='dropdown-item'>Profile</Link>
+                                    <Link to="/" className='dropdown-item'>Setting</Link>
+                                    <Link to="/" className='dropdown-item'>LogOut</Link>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button className='nav-togle-btn hide-desktop' id='sidebar-toggle' type='button' onClick={toggler}>
+                        <span className=""><i class="fa-solid fa-bars-staggered"></i></span>
+                    </button>
+                </div>
+            </nav>
+
+
         </>
     )
 }
