@@ -17,6 +17,40 @@ const DailyEntry = () => {
     getcustomer();
   }, [])
 
+  var raw = JSON.stringify({
+    "dailyEntries":
+      data?.data?.map((val) => {
+        return (
+          {
+            "id": val._id,
+            "date": "2024-01-02",
+            "products": val.product?.map((val) => {
+              return (
+                { "type": val.product_name.name, "quantity": val.product_quantity }
+              )
+            })
+          }
+        )
+      })
+  });
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+  const addAllEntry = () => {
+    fetch("http://localhost:4000/api/v1/milk-buyer/bulk-daily-product-entry", requestOptions)
+      .then((response) => {
+        return response.text()
+      }).then((data) => {
+        alert(data)
+        getcustomer()
+      })
+  }
+
   return (
     <>
       <div className='container mt-5'>
@@ -71,11 +105,11 @@ const DailyEntry = () => {
                           {val?.dailyEntries[4] ? <td>{val?.dailyEntries[4]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
                           {val?.dailyEntries[5] ? <td>{val?.dailyEntries[5]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
                           {val?.dailyEntries[6] ? <td>{val?.dailyEntries[6]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
-                          <td><button className='btn btn-primary'>Update</button></td>
                         </tr>
                       )
                     })}
                   </tbody>
+                  <button className='btn btn-primary my-3' onClick={addAllEntry}>Update</button>
                 </table>
               </div>
             </div>

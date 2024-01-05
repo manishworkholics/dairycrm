@@ -217,9 +217,9 @@ const Cutomer = () => {
 
 
                             </select>
-                           
+
                           </td>
-                          
+
                           <td>
                             <input
                               type="text"
