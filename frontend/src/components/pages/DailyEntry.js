@@ -37,15 +37,12 @@ const DailyEntry = () => {
     })
   });
 
-
-
   var requestOptions = {
     method: 'POST',
     headers: myHeaders,
     body: raw,
     redirect: 'follow'
   };
-
   const addbulkentry = () => {
     fetch("http://localhost:4000/api/v1/milk-buyer/bulk-daily-product-entry", requestOptions)
       .then((res) => {
@@ -55,7 +52,6 @@ const DailyEntry = () => {
         getcustomer()
       })
   }
-
 
 
   return (
