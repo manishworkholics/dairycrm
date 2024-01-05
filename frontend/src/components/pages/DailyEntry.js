@@ -32,7 +32,6 @@ const DailyEntry = () => {
                       <th>Name</th>
                       <th>Product</th>
                       <th>Unit</th>
-                      <th>Today Quantity</th>
                       <th>Quantity</th>
                       <th>Quantity</th>
                       <th>Quantity</th>
@@ -40,7 +39,8 @@ const DailyEntry = () => {
                       <th>Quantity</th>
                       <th>Quantity</th>
                       <th>Quantity</th>
-
+                      <th>Quantity</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -62,7 +62,6 @@ const DailyEntry = () => {
                           <td>{val?.product?.map((val) => {
                             return (
                               <input type="text" class="form-control" id="text" value={val?.product_quantity} name="text" />
-
                             )
                           })}</td>
                           {val?.dailyEntries[0] ? <td>{val?.dailyEntries[0]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
@@ -72,6 +71,7 @@ const DailyEntry = () => {
                           {val?.dailyEntries[4] ? <td>{val?.dailyEntries[4]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
                           {val?.dailyEntries[5] ? <td>{val?.dailyEntries[5]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
                           {val?.dailyEntries[6] ? <td>{val?.dailyEntries[6]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
+                          <td><button className='btn btn-primary'>Update</button></td>
                         </tr>
                       )
                     })}

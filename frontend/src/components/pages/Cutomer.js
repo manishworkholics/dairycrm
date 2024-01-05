@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 const Cutomer = () => {
   const [deleteid, Setdeleteid] = useState('')
   const [data, setData] = useState();
+  const [product, setproduct] = useState();
   const [post, setPost] = useState({ name: '', number: '', adress: '', product: '' });
   const [edit, setedit] = useState({ name: '', number: '', adress: '' });
   const [showModal, setShowModal] = useState(false);
@@ -29,6 +30,15 @@ const Cutomer = () => {
     const value = e.target.value;
     setedit({ ...edit, [name]: value });
   };
+
+  const getproduct = () => {
+    fetch(`http://localhost:4000/api/v1/get-product`)
+      .then((res) => {
+        return res.json()
+      }).then((data) => {
+        setproduct(data)
+      })
+  }
 
   const addcustomer = async (e) => {
     e.preventDefault();
@@ -89,6 +99,7 @@ const Cutomer = () => {
 
   useEffect(() => {
     getcustomer();
+    getproduct();
   }, [])
 
 
@@ -196,14 +207,19 @@ const Cutomer = () => {
                       {inputList.map((item, index) => (
                         <tr key={index}>
                           <td>
-                            <input
-                              type="text"
-                              value={item.product_name}
-                              onChange={(e) => handleInputChange(item.id, 'product_name', e)}
-                              placeholder="product"
-                              style={{ width: '120px' }}
-                            />
+                            <select style={{ width: '120px' }} class="form-select" onChange={(e) => handleInputChange(item.id, 'product_name', e)}>
+                              <option value="" disabled selected hidden>Select Product</option>
+                              {product?.product?.map((val, index) => {
+                                return (
+                                  <option key={index} value={val._id}>{val.name}/{val.unit}</option>
+                                )
+                              })}
+
+
+                            </select>
+                           
                           </td>
+                          
                           <td>
                             <input
                               type="text"
