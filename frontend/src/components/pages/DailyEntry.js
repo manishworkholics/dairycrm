@@ -17,6 +17,47 @@ const DailyEntry = () => {
     getcustomer();
   }, [])
 
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    "dailyEntries": data?.data?.map((val) => {
+      return (
+        {
+          "id": val._id,
+          "date": "2024-01-02",
+          "products": val.product?.map((val) => {
+            return (
+              { "type": val?.product_name?.name, "quantity": val?.product_quantity }
+            )
+          })
+        }
+      )
+    })
+  });
+
+
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  const addbulkentry = () => {
+    fetch("http://localhost:4000/api/v1/milk-buyer/bulk-daily-product-entry", requestOptions)
+      .then((res) => {
+        return res.text()
+      }).then((data) => {
+        alert(data)
+        getcustomer()
+      })
+  }
+
+
+
   return (
     <>
       <div className='container mt-5'>
@@ -40,7 +81,6 @@ const DailyEntry = () => {
                       <th>Quantity</th>
                       <th>Quantity</th>
                       <th>Quantity</th>
-
                     </tr>
                   </thead>
                   <tbody>
@@ -75,8 +115,11 @@ const DailyEntry = () => {
                         </tr>
                       )
                     })}
+
                   </tbody>
+
                 </table>
+                <button type='button' className='btn btn-primary mt-3' onClick={addbulkentry}>Add Entry</button>
               </div>
             </div>
           </div>
