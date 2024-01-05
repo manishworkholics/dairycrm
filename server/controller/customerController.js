@@ -108,7 +108,7 @@ exports.report = async (req, res) => {
 }
 
 
-exports.addallentry = async (req,res) => {
+exports.addallentry = async (req, res) => {
     try {
         const { dailyEntries } = req.body;
 
@@ -120,7 +120,7 @@ exports.addallentry = async (req,res) => {
             const { id, date, products } = entry;
 
             const buyer = await customer.findById(id);
-            if (!buyer) continue; // Skip to next iteration if buyer not found
+            if (!buyer) continue;
 
             buyer.dailyEntries.push({ date, products });
             await buyer.save();
