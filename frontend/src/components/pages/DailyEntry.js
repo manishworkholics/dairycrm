@@ -17,40 +17,6 @@ const DailyEntry = () => {
     getcustomer();
   }, [])
 
-  var raw = JSON.stringify({
-    "dailyEntries":
-      data?.data?.map((val) => {
-        return (
-          {
-            "id": val._id,
-            "date": "2024-01-02",
-            "products": val.product?.map((val) => {
-              return (
-                { "type": val.product_name.name, "quantity": val.product_quantity }
-              )
-            })
-          }
-        )
-      })
-  });
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
-  };
-  const addAllEntry = () => {
-    fetch("http://localhost:4000/api/v1/milk-buyer/bulk-daily-product-entry", requestOptions)
-      .then((response) => {
-        return response.text()
-      }).then((data) => {
-        alert(data)
-        getcustomer()
-      })
-  }
-
   return (
     <>
       <div className='container mt-5'>
@@ -66,6 +32,7 @@ const DailyEntry = () => {
                       <th>Name</th>
                       <th>Product</th>
                       <th>Unit</th>
+                      <th>Today Quantity</th>
                       <th>Quantity</th>
                       <th>Quantity</th>
                       <th>Quantity</th>
@@ -74,7 +41,7 @@ const DailyEntry = () => {
                       <th>Quantity</th>
                       <th>Quantity</th>
                       <th>Quantity</th>
-                     
+             
                     </tr>
                   </thead>
                   <tbody>
@@ -95,7 +62,8 @@ const DailyEntry = () => {
                           })}</td>
                           <td>{val?.product?.map((val) => {
                             return (
-                              <input type="text" class="form-control" id="text" value={val?.product_quantity} name="text" />
+                              <input type="text" class="form-control my-2" id="text" value={val?.product_quantity} name="text" />
+
                             )
                           })}</td>
                           {val?.dailyEntries[0] ? <td>{val?.dailyEntries[0]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
@@ -109,7 +77,6 @@ const DailyEntry = () => {
                       )
                     })}
                   </tbody>
-                  <button className='btn btn-primary my-3' onClick={addAllEntry}>Update</button>
                 </table>
               </div>
             </div>
