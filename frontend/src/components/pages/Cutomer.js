@@ -205,7 +205,7 @@ const Cutomer = () => {
                     </thead>
                     <tbody>
                       {inputList.map((item, index) => (
-                        <tr key={index}  className='row d-flex justify-content-between'>
+                        <tr key={index}  className='row d-flex justify-content-between mb-3'>
                           <td className='col-4 text-center'>
                             <select className='me-4' style={{ width: '120px' }} class="form-select" onChange={(e) => handleInputChange(item.id, 'product_name', e)}>
                               <option value="" disabled selected hidden>Select Product</option>
@@ -230,12 +230,12 @@ const Cutomer = () => {
                               className='me-4 form-control'
                             />
                           </td>
-                          <td className='col-4 d-flex justify-content-center'>
+                          <td className='col-4 '>
                             {inputList.length > 1 && (
-                              <button onClick={() => handleRemoveInput(item.id)}>Remove</button>
+                              <div> <button className="btn btn-secondary" onClick={() => handleRemoveInput(item.id)}>Remove</button></div>
                             )}
                             {index === inputList.length - 1 && (
-                              <button className='btn btn-success ' onClick={handleAddInput}>Add More</button>
+                               <div> <button className='btn btn-success ' onClick={handleAddInput}>Add More</button></div>
                             )}
                           </td>
                         </tr>
