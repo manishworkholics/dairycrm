@@ -99,9 +99,18 @@ const Reports = () => {
                           <p>{val?.quantity},</p>
                         )
                       })}</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>{val?.products?.map((val) => {
+                        return (
+                          <p>{val?.price},</p>
+                        )
+                      })}</td>
+                      <td>{val?.products?.map((val) => {
+                        return (
+                          <p>{(parseFloat(val?.quantity) || 0) * (parseFloat(val?.price) || 0)}</p>
+                        )
+                      })}</td>
+                      {val?.date === null ? 0 : <td>{val?.date.slice(0, 10)}</td>}
+
                     </tr>
                   )
                 })}
