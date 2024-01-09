@@ -44,12 +44,16 @@ const DailyEntry = () => {
   };
 
   const addbulkentry = () => {
+    if(!selectedDate){
+     return alert("please select data first")
+    }
     const bulkData = {
       dailyEntries: data?.data?.map((val) => ({
         id: val._id,
         date: selectedDate,
         products: val.product?.map((productVal) => ({
           type: productVal?.product_name?.name,
+          price: productVal?.product_name?.price,
           quantity: editedQuantities[val._id]?.[productVal.product_name._id] || productVal?.product_quantity
         }))
       }))
