@@ -111,7 +111,7 @@ const Product = () => {
               <div className="row">
                 <div className="col-12">
                   <h2 className="banner-heading-h2">Products</h2>
-                  <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Product</h3>
+                  <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Products</h3>
                 </div>
               </div>
             </div>
@@ -121,21 +121,22 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <div className='container'>
+      <div className='container my-5 pb-5'>
         <div className='row'>
           <div className='col-md-12'>
-            {/* <h1 className='text-center mb-1 page-heading'>Products</h1> */}
-            <button type="button" class="btn btn-info px-5 my-2" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
-            <div className="table-card">
+            <div className='d-flex justify-content-end'>
+              <button type="button" class="btn btn-info px-5 my-2 text-white" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
+            </div>
+            <div className="card tbl-card mt-3">
               <div className="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-striped tbl-blue-theme">
                   <thead>
                     <tr>
                       <th>S.no</th>
                       <th>Product</th>
                       <th>Product Rate</th>
                       <th>Date</th>
-                      <th>Action</th>
+                      <th className='text-center'>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -146,7 +147,7 @@ const Product = () => {
                           <td>{val.name}</td>
                           <td>{val.price}/{val.unit}</td>
                           <td>{dateFormat(val.createdAt)}</td>
-                          <td className='d-flex'>
+                          <td className='d-flex justify-content-center'>
                             <button type="button" class="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span class="material-symbols-outlined">edit</span></button>
                             <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
                           </td>

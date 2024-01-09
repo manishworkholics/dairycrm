@@ -1,10 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
-const toggler = () => {
-    document.querySelector("#sidebar").classList.toggle("collapsed")
-}
-
 const Navbar = () => {
 
     return (
@@ -36,13 +32,13 @@ const Navbar = () => {
                             <div>
                                 <ul className="navbar-nav">
                                     <li className="nav-item dropdown">
-                                        <a href="#" data-bs-toggle="dropdown" className='nav-icon pe-md-0 nav-link'>
+                                        <Link to="/" data-bs-toggle="dropdown" className='nav-icon pe-md-0 nav-link'>
                                             <img src={require("../img/profile-img.jpg")} className='avatar profile img-fluid rounded' alt="" />
-                                        </a>
+                                        </Link>
                                         <div className="dropdown-menu dropdown-menu-end">
-                                            <a href="#" className='dropdown-item'>Profile</a>
-                                            <a href="#" className='dropdown-item'>Setting</a>
-                                            <a href="#" className='dropdown-item'>LogOut</a>
+                                            <Link to="/" className='dropdown-item'>Profile</Link>
+                                            <Link to="/" className='dropdown-item'>Setting</Link>
+                                            <Link to="/" className='dropdown-item'>LogOut</Link>
                                         </div>
                                     </li>
                                 </ul>

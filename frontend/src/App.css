@@ -55,8 +55,7 @@ body{
 }
 
 .table-card {
-    padding: 30px;
-    background: #d5e9f1;
+    background: #dfecf8;
     border-radius: 30px;
 }
 
@@ -84,12 +83,25 @@ body{
     font-weight: 500;
     line-height: normal;
 }
+.btn-info{
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #fff;
+    background-color: #2065AE;
+    border-radius: 50px;
+}
+.btn-info:hover{
+    background-color: #EFF7FF;
+    border: 1px solid #2065AE !important;
+    color: #2065AE !important;
+}
 
 .btn span {
     font-size: 20px;
     font-weight: 500;
     line-height: normal;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .close {
@@ -124,7 +136,7 @@ body{
 /*--------------------- Wave-Banner-Style --------------------*/
 .banner-content-area{
     width: 100%;
-    height: 35vh;
+    min-height: 30vh;
     background: #2065AE;
     display: flex;
     align-items: center;
@@ -150,3 +162,43 @@ body{
     font-weight: 600;
     text-transform: capitalize;
 }
+
+
+.tbl-card{
+    border-radius: 25px;
+    overflow: hidden;
+}
+.tbl-blue-theme th{
+    text-align: -webkit-match-parent;
+    padding: 15px 30px !important;
+    background: #154171!important;
+    color: #fff !important;
+}
+.tbl-blue-theme td{
+    padding: 15px 30px !important;
+}
+.table .btn{
+    border-radius: 50px;
+}
+.table-responsive::-webkit-scrollbar {
+    height: 12px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb {
+    background: #b0c9e5;
+    border-radius: 10px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #b0c9e5;
+  }
+  .w-max-content{
+    width: max-content;
+  }
+
+
+  @media only screen and (max-width:767px) {
+    table{
+        width: max-content !important;
+    }
+  }

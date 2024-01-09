@@ -44,8 +44,8 @@ const DailyEntry = () => {
   };
 
   const addbulkentry = () => {
-    if(!selectedDate){
-     return alert("please select data first")
+    if (!selectedDate) {
+      return alert("please select data first")
     }
     const bulkData = {
       dailyEntries: data?.data?.map((val) => ({
@@ -78,22 +78,40 @@ const DailyEntry = () => {
 
   return (
     <>
-      <div className='container mt-1'>
+      <div className="container-fluid p-0">
+        <div className="page-banner">
+          <div className="banner-content-area">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <h2 className="banner-heading-h2">Daily Entry</h2>
+                  <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Daily Entry</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="banner-btm-img">
+            <img src={require("../img/banner-btm-img.png")} alt="" />
+          </div>
+        </div>
+      </div>
+      <div className='container my-5 pb-5'>
         <div className='row'>
           <div className='col-md-12'>
-            <h1 className='text-center mb-1 page-heading'>Daily Entry</h1>
-            <div className="table-card">
-              <div className='mb-1'>
-                <h1>Selected Date: {selectedDate}</h1>
-                <input
-                  className="form-control"
-                  type='date'
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                />
+            <div className="card tbl-card mt-3">
+              <div className='d-flex align-items-center p-4'>
+                <h4 className='mb-0 me-3'>Selected Date: {selectedDate}</h4>
+                <div className="">
+                  <input
+                    className="form-control "
+                    type='date'
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                  />
+                </div>
               </div>
               <div className="table-responsive">
-                <table className="table table-hover">
+                <table className="table table-striped tbl-blue-theme w-max-content">
                   <thead>
                     <tr>
                       <th>S.no</th>
@@ -152,10 +170,10 @@ const DailyEntry = () => {
                     ))}
                   </tbody>
                 </table>
-                <button type='button' className='btn btn-primary mt-3' onClick={addbulkentry}>
-                  Add Entry
-                </button>
               </div>
+            </div>
+            <div className='d-flex justify-content-end'>
+              <button type='button' className='btn btn-info px-5 my-5' onClick={addbulkentry}> Add Entry <span><i class="fa-solid fa-plus"></i></span></button>
             </div>
           </div>
         </div>

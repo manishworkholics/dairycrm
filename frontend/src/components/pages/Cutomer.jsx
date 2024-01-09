@@ -127,21 +127,39 @@ const Cutomer = () => {
 
   return (
     <>
-      <div className='container mt-1'>
+      <div className="container-fluid p-0">
+        <div className="page-banner">
+          <div className="banner-content-area">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <h2 className="banner-heading-h2">Customer</h2>
+                  <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Customer</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="banner-btm-img">
+            <img src={require("../img/banner-btm-img.png")} alt="" />
+          </div>
+        </div>
+      </div>
+      <div className='container my-5 pb-5'>
         <div className='row'>
           <div className='col-md-12'>
-            <h1 className='text-center mb-1 page-heading'>Cutomer</h1>
-            <button type="button" className="btn btn-info px-5 my-1" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
-            <div className="table-card">
+            <div className='d-flex justify-content-end'>
+              <button type="button" className="btn btn-info px-5 my-1" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
+            </div>
+            <div className="card tbl-card mt-3">
               <div className="table-responsive">
-                <table className="table table-hover">
+                <table className="table table-striped tbl-blue-theme">
                   <thead>
                     <tr>
                       <th>S.no</th>
                       <th>Name</th>
                       <th>Number</th>
                       <th>Date</th>
-                      <th>Action</th>
+                      <th className='text-center'>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -152,7 +170,7 @@ const Cutomer = () => {
                           <td>{val.name}</td>
                           <td>{val.number}</td>
                           <td>{dateFormat(val.createdAt)}</td>
-                          <td className='d-flex'>
+                          <td className='d-flex justify-content-center'>
                             <button type="button" className="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span class="material-symbols-outlined">edit</span></button>
                             <button type="button" className="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
 
@@ -205,7 +223,7 @@ const Cutomer = () => {
                     </thead>
                     <tbody>
                       {inputList.map((item, index) => (
-                        <tr key={index}  className='row d-flex justify-content-between mb-3'>
+                        <tr key={index} className='row d-flex justify-content-between mb-3'>
                           <td className='col-4 text-center'>
                             <select className='me-4' style={{ width: '120px' }} class="form-select" onChange={(e) => handleInputChange(item.id, 'product_name', e)}>
                               <option value="" disabled selected hidden>Select Product</option>
@@ -235,7 +253,7 @@ const Cutomer = () => {
                               <div> <button className="btn btn-secondary" onClick={() => handleRemoveInput(item.id)}>Remove</button></div>
                             )}
                             {index === inputList.length - 1 && (
-                               <div> <button className='btn btn-success mt-3' onClick={handleAddInput}>Add More</button></div>
+                              <div> <button className='btn btn-success mt-3' onClick={handleAddInput}>Add More</button></div>
                             )}
                           </td>
                         </tr>
