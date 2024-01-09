@@ -5,7 +5,7 @@ const DailyEntry = () => {
   const [data, setData] = useState();
 
   const getcustomer = () => {
-    fetch(`http://localhost:4000/api/v1/get-customer`)
+    fetch(`http://206.189.130.102:6060/api/v1/get-customer`)
       .then((res) => {
         return res.json()
       }).then((data) => {
@@ -44,7 +44,7 @@ const DailyEntry = () => {
     redirect: 'follow'
   };
   const addbulkentry = () => {
-    fetch("http://localhost:4000/api/v1/milk-buyer/bulk-daily-product-entry", requestOptions)
+    fetch("http://206.189.130.102:6060/api/v1/milk-buyer/bulk-daily-product-entry", requestOptions)
       .then((res) => {
         return res.text()
       }).then((data) => {

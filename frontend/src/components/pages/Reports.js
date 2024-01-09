@@ -6,7 +6,7 @@ const Reports = () => {
   const [customer, setcustomer] = useState();
 
   const getcustomer = () => {
-    fetch(`http://localhost:4000/api/v1/get-customer`)
+    fetch(`http://206.189.130.102:6060/api/v1/get-customer`)
       .then((res) => {
         return res.json()
       }).then((data) => {
@@ -15,7 +15,7 @@ const Reports = () => {
   }
 
   const getcustomerbyid = () => {
-    fetch(`http://localhost:4000/api/v1/get-customer/${customer}`)
+    fetch(`http://206.189.130.102:6060/api/v1/get-customer/${customer}`)
       .then((res) => {
         return res.json()
       }).then((data) => {

@@ -2,7 +2,6 @@
   "name": "demo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4000",
   "dependencies": {
     "@syncfusion/ej2-react-buttons": "^22.2.8",
     "@syncfusion/ej2-react-dropdowns": "^22.2.8",
