@@ -196,10 +196,19 @@ body{
   .w-max-content{
     width: max-content;
   }
-
+.d-none-desktop{
+    display: none;
+}
 
   @media only screen and (max-width:767px) {
     table{
         width: max-content !important;
     }
+    .d-none-desktop{
+        display: block !important;
+    }
+    .d-none-mobile{
+        display: none;
+    }
+    
   }

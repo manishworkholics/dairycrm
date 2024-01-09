@@ -27,9 +27,19 @@ const Navbar = () => {
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/home/report">Reports</Link>
                                     </li>
+                                    <li className="nav-item dropdown d-none-desktop">
+                                        <Link to="/" data-bs-toggle="dropdown" className='nav-icon pe-md-0 nav-link'>
+                                            <img src={require("../img/profile-img.jpg")} className='avatar profile img-fluid rounded' alt="" />
+                                        </Link>
+                                        <div className="dropdown-menu dropdown-menu-end">
+                                            <Link to="/" className='dropdown-item'>Profile</Link>
+                                            <Link to="/" className='dropdown-item'>Setting</Link>
+                                            <Link to="/" className='dropdown-item'>LogOut</Link>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
-                            <div>
+                            <div className='d-none-mobile'>
                                 <ul className="navbar-nav">
                                     <li className="nav-item dropdown">
                                         <Link to="/" data-bs-toggle="dropdown" className='nav-icon pe-md-0 nav-link'>
