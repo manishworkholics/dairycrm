@@ -104,52 +104,64 @@ const Product = () => {
 
   return (
     <>
-              <div className="container-fluid p-0">
-                <div className="wave">
-
+      <div className="container-fluid p-0">
+        <div className="page-banner">
+          <div className="banner-content-area">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <h2 className="banner-heading-h2">Products</h2>
+                  <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Product</h3>
                 </div>
               </div>
-              <div className='container'>
-                <div className='row'>
-                  <div className='col-md-12'>
-                    <h1 className='text-center mb-1 page-heading'>Products</h1>
-                    <button type="button" class="btn btn-info px-5 my-2" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
-                    <div className="table-card">
-                      <div className="table-responsive">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th>S.no</th>
-                              <th>Product</th>
-                              <th>Product Rate</th>
-                              <th>Date</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {data?.product?.map((val, index) => {
-                              return (
-                                <tr key={index}>
-                                  <td>{index + 1}</td>
-                                  <td>{val.name}</td>
-                                  <td>{val.price}/{val.unit}</td>
-                                  <td>{dateFormat(val.createdAt)}</td>
-                                  <td className='d-flex'>
-                                    <button type="button" class="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span class="material-symbols-outlined">edit</span></button>
-                                    <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
-                                  </td>
-                                </tr>
-                              )
-                            })}
+            </div>
+          </div>
+          <div className="banner-btm-img">
+            <img src={require("../img/banner-btm-img.png")} alt="" />
+          </div>
+        </div>
+      </div>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-12'>
+            {/* <h1 className='text-center mb-1 page-heading'>Products</h1> */}
+            <button type="button" class="btn btn-info px-5 my-2" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
+            <div className="table-card">
+              <div className="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>S.no</th>
+                      <th>Product</th>
+                      <th>Product Rate</th>
+                      <th>Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data?.product?.map((val, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{val.name}</td>
+                          <td>{val.price}/{val.unit}</td>
+                          <td>{dateFormat(val.createdAt)}</td>
+                          <td className='d-flex'>
+                            <button type="button" class="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span class="material-symbols-outlined">edit</span></button>
+                            <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
+                          </td>
+                        </tr>
+                      )
+                    })}
 
 
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  </tbody>
+                </table>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
       <Modal show={showModal} onHide={handleClose}>

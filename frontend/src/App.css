@@ -17,11 +17,9 @@ a {
 li {
     list-style: none;
 }
-
-main {
-    background-color: #f8fafc;
+body{
+    background: #EFF7FF;
 }
-
 
 /*--------------------- Navbar-CSS --------------------*/
 
@@ -124,36 +122,31 @@ main {
 }
 
 /*--------------------- Wave-Banner-Style --------------------*/
-.wave {
-    display: block;
-    position: relative;
-    height: 40px;
+.banner-content-area{
     width: 100%;
-    background: rgb(57, 27, 112);
-    transform: scale(1, 1);
+    height: 35vh;
+    background: #2065AE;
+    display: flex;
+    align-items: center;
 }
-
-/* .wave:before {
-    content: "";
-    display: block;
-    position: absolute;
-    border-radius: 100%;
+.banner-btm-img{
+    margin-top: -10px;
+}
+.banner-btm-img img{
     width: 100%;
-    height: 300px;
-    background-color: white;
-    right: -25%;
-    top: 20px
-} */
-
-.wave:after {
-    content: "";
-    display: block;
-    position: absolute;
-    border-radius: 100%;
-    width: 100%;
-    height: 300px;
-    background-color: rgb(57, 27, 112);
-    left: -25%;
-    top: -240px;
-    clip-path: ellipse(100% 15% at -15% 100%);
+    object-fit: fill;
+}
+.banner-heading-h2{
+    color: #fff;
+    font-family: "Poppins", Sans-serif;
+    font-size: 55px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.banner-subheading-h3{
+    color: #fff;
+    font-family: "Poppins", Sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
 }
