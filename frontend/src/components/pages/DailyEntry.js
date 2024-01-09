@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const DailyEntry = () => {
   const [data, setData] = useState();
+  const [selectedDate, setSelectedDate] = useState('');
   const [editedQuantities, setEditedQuantities] = useState({});
 
+
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
   const getcustomer = () => {
     fetch(`http://localhost:4000/api/v1/get-customer`)
       .then((res) => res.json())
@@ -42,7 +47,7 @@ const DailyEntry = () => {
     const bulkData = {
       dailyEntries: data?.data?.map((val) => ({
         id: val._id,
-        date: "2024-01-02",
+        date: selectedDate,
         products: val.product?.map((productVal) => ({
           type: productVal?.product_name?.name,
           quantity: editedQuantities[val._id]?.[productVal.product_name._id] || productVal?.product_quantity
@@ -69,11 +74,20 @@ const DailyEntry = () => {
 
   return (
     <>
-      <div className='container mt-5'>
+      <div className='container mt-1'>
         <div className='row'>
           <div className='col-md-12'>
-            <h1 className='text-center mb-5 page-heading'>Daily Entry</h1>
+            <h1 className='text-center mb-1 page-heading'>Daily Entry</h1>
             <div className="table-card">
+              <div className='mb-1'>
+                <h1>Selected Date: {selectedDate}</h1>
+                <input
+                  className="form-control"
+                  type='date'
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                />
+              </div>
               <div className="table-responsive">
                 <table className="table table-hover">
                   <thead>
