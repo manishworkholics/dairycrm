@@ -33,10 +33,25 @@ const Navbar = () => {
                                     </li>
                                 </ul>
                             </div>
+                            <div>
+                                <ul className="navbar-nav">
+                                    <li className="nav-item dropdown">
+                                        <a href="#" data-bs-toggle="dropdown" className='nav-icon pe-md-0 nav-link'>
+                                            <img src={require("../img/profile-img.jpg")} className='avatar profile img-fluid rounded' alt="" />
+                                        </a>
+                                        <div className="dropdown-menu dropdown-menu-end">
+                                            <a href="#" className='dropdown-item'>Profile</a>
+                                            <a href="#" className='dropdown-item'>Setting</a>
+                                            <a href="#" className='dropdown-item'>LogOut</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </nav>
                 </div>
             </div>
+            <hr className='m-0' />
         </>
     )
 }

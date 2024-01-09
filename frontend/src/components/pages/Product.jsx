@@ -104,8 +104,12 @@ const Product = () => {
 
   return (
     <>
-      
-              <div className='container mt-1'>
+              <div className="container-fluid p-0">
+                <div className="wave">
+
+                </div>
+              </div>
+              <div className='container'>
                 <div className='row'>
                   <div className='col-md-12'>
                     <h1 className='text-center mb-1 page-heading'>Products</h1>
