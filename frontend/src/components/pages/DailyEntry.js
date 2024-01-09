@@ -56,10 +56,10 @@ const DailyEntry = () => {
 
   return (
     <>
-      <div className='container mt-5'>
+      <div className='container mt-1'>
         <div className='row'>
           <div className='col-md-12'>
-            <h1 className='text-center mb-5 page-heading'>Daily Entry</h1>
+            <h1 className='text-center mb-1 page-heading'>Daily Entry</h1>
             <div className="table-card">
               <div className="table-responsive">
                 <table className="table table-hover">

@@ -127,11 +127,11 @@ const Cutomer = () => {
 
   return (
     <>
-      <div className='container mt-5'>
+      <div className='container mt-1'>
         <div className='row'>
           <div className='col-md-12'>
-            <h1 className='text-center mb-5 page-heading'>Cutomer</h1>
-            <button type="button" className="btn btn-info px-5 my-4" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
+            <h1 className='text-center mb-1 page-heading'>Cutomer</h1>
+            <button type="button" className="btn btn-info px-5 my-1" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
             <div className="table-card">
               <div className="table-responsive">
                 <table className="table table-hover">

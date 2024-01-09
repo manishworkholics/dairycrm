@@ -105,11 +105,11 @@ const Product = () => {
   return (
     <>
       
-              <div className='container mt-5'>
+              <div className='container mt-1'>
                 <div className='row'>
                   <div className='col-md-12'>
-                    <h1 className='text-center mb-5 page-heading'>Products</h1>
-                    <button type="button" class="btn btn-info px-5 my-4" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
+                    <h1 className='text-center mb-1 page-heading'>Products</h1>
+                    <button type="button" class="btn btn-info px-5 my-2" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
                     <div className="table-card">
                       <div className="table-responsive">
                         <table class="table table-hover">
