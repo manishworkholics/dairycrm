@@ -150,7 +150,7 @@ const Cutomer = () => {
         <div className='row'>
           <div className='col-md-12'>
             <div className='d-flex justify-content-end'>
-              <button type="button" className="btn btn-info px-5 my-1" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
+              <button type="button" className="btn btn-info my-1" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
             </div>
             <div className="card tbl-card mt-3">
               <div className="table-responsive">
@@ -192,8 +192,8 @@ const Cutomer = () => {
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header >
           <Modal.Title> <span className="text-red">Add Cutomer</span>  </Modal.Title>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={handleClose}>
-            <span aria-hidden="true">&times;</span>
+          <button type="button" className="close modal-closebtn" data-dismiss="modal" aria-label="Close" onClick={handleClose}>
+            <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
           </button>
         </Modal.Header>
         <Modal.Body>
@@ -215,9 +215,9 @@ const Cutomer = () => {
                 </div>
 
                 <div className="mb-3 mt-3">
-                  <table>
-                    <thead>
-                      <tr className='row d-flex justify-content-between'>
+                  <table className="w-100">
+                    <thead className=''>
+                      <tr className='row d-flex justify-content-between mb-3'>
                         <th className='col-4 text-center'>Product</th>
                         <th className='col-4 text-center'>Quantity</th>
                         <th className='col-4 text-center'>Action</th>
@@ -225,9 +225,9 @@ const Cutomer = () => {
                     </thead>
                     <tbody>
                       {inputList.map((item, index) => (
-                        <tr key={index} className='row d-flex justify-content-between mb-3'>
-                          <td className='col-4 text-center'>
-                            <select className='me-4' style={{ width: '120px' }} class="form-select" onChange={(e) => handleInputChange(item.id, 'product_name', e)}>
+                        <tr key={index} className='row d-flex justify-content-between'>
+                          <td className='col-4 text-center mb-3'>
+                            <select className='me-4'  class="form-select" onChange={(e) => handleInputChange(item.id, 'product_name', e)}>
                               <option value="" disabled selected hidden>Select Product</option>
                               {product?.product?.map((val, index) => {
                                 return (
@@ -240,22 +240,22 @@ const Cutomer = () => {
 
                           </td>
 
-                          <td className='col-4 text-center'>
+                          <td className='col-4 text-center mb-3'>
                             <input
                               type="text"
                               value={item.product_quantity}
                               onChange={(e) => handleInputChange(item.id, 'product_quantity', e)}
                               placeholder="quantity"
-                              style={{ width: '120px' }}
+                              
                               className='me-4 form-control'
                             />
                           </td>
-                          <td className='col-4 '>
+                          <td className='col-4 text-center'>
                             {inputList.length > 1 && (
-                              <div> <button className="btn btn-secondary" onClick={() => handleRemoveInput(item.id)}>Remove</button></div>
+                              <div className=""> <button className="btn btn-secondary mx-auto mb-3" onClick={() => handleRemoveInput(item.id)}>Remove</button></div>
                             )}
                             {index === inputList.length - 1 && (
-                              <div> <button className='btn btn-success mt-3' onClick={handleAddInput}>Add More</button></div>
+                              <div className=""> <button className='btn btn-success mx-auto mb-3' onClick={handleAddInput}>Add More</button></div>
                             )}
                           </td>
                         </tr>
@@ -263,7 +263,7 @@ const Cutomer = () => {
                     </tbody>
                   </table>
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={addcustomer}>Submit</button>
+                <button type="submit" className="btn btn-info" onClick={addcustomer}>Submit</button>
               </div>
             </div>
           </div>

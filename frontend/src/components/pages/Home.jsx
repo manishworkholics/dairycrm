@@ -46,7 +46,7 @@ const Home = () => {
                             <Link to="/" class="text text-links">Forgot Password</Link>
                           </div>
                           <div className='d-flex justify-content-center mt-3 mb-3'>
-                            <button type="submit" class="btn btn-info">Submit</button>
+                            <Link to="/home/product"><button type="submit" class="btn btn-info">Submit</button></Link>
                           </div>
                         </form>
                       </div>

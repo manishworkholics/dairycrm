@@ -126,7 +126,7 @@ const Product = () => {
         <div className='row'>
           <div className='col-md-12'>
             <div className='d-flex justify-content-end'>
-              <button type="button" class="btn btn-info px-5 my-2 text-white" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
+              <button type="button" class="btn btn-info my-2 text-white" onClick={handleShow}>Add <span><i class="fa-solid fa-plus "></i></span></button>
             </div>
             <div className="card tbl-card mt-3">
               <div className="table-responsive">
@@ -169,8 +169,8 @@ const Product = () => {
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header >
           <Modal.Title> <span className="text-red">Add Product</span>  </Modal.Title>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={handleClose}>
-            <span aria-hidden="true">&times;</span>
+          <button type="button" className="close modal-closebtn" data-dismiss="modal" aria-label="Close" onClick={handleClose}>
+            <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
           </button>
         </Modal.Header>
         <Modal.Body>
@@ -201,7 +201,7 @@ const Product = () => {
 
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-primary" onClick={addproduct}>Submit</button>
+                  <button type="submit" class="btn btn-info" onClick={addproduct}>Submit</button>
                 </form>
               </div>
             </div>
@@ -215,8 +215,8 @@ const Product = () => {
       <Modal show={showeditModal} onHide={handleeditClose}>
         <Modal.Header >
           <Modal.Title> <span className="text-red">Edit Product</span>  </Modal.Title>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={handleeditClose}>
-            <span aria-hidden="true">&times;</span>
+          <button type="button" className="close modal-closebtn" data-dismiss="modal" aria-label="Close" onClick={handleeditClose}>
+            <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
           </button>
         </Modal.Header>
         <Modal.Body>
@@ -247,7 +247,7 @@ const Product = () => {
 
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-primary" onClick={() => { upadateproduct(edit._id) }}>Submit</button>
+                  <button type="submit" class="btn btn-info" onClick={() => { upadateproduct(edit._id) }}>Submit</button>
                 </form>
               </div>
             </div>

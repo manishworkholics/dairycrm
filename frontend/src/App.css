@@ -17,7 +17,8 @@ a {
 li {
     list-style: none;
 }
-body{
+
+body {
     background: #EFF7FF;
 }
 
@@ -83,15 +84,18 @@ body{
     font-weight: 500;
     line-height: normal;
 }
-.btn-info{
-    font-size: 20px;
+
+.btn-info {
+    font-size: 18px;
     font-weight: 500;
     text-transform: capitalize;
     color: #fff;
     background-color: #2065AE;
     border-radius: 50px;
+    padding: 7px 20px !important;
 }
-.btn-info:hover{
+
+.btn-info:hover {
     background-color: #EFF7FF;
     border: 1px solid #2065AE !important;
     color: #2065AE !important;
@@ -134,21 +138,24 @@ body{
 }
 
 /*--------------------- Wave-Banner-Style --------------------*/
-.banner-content-area{
+.banner-content-area {
     width: 100%;
     min-height: fit-content;
     background: #2065AE;
     display: flex;
     align-items: center;
 }
-.banner-btm-img{
+
+.banner-btm-img {
     margin-top: -10px;
 }
-.banner-btm-img img{
+
+.banner-btm-img img {
     width: 100%;
     object-fit: fill;
 }
-.banner-heading-h2{
+
+.banner-heading-h2 {
     color: #fff;
     font-family: "Poppins", Sans-serif;
     font-size: 40px;
@@ -156,28 +163,32 @@ body{
     text-transform: uppercase;
     margin-top: 20px;
 }
-.banner-subheading-h3{
+
+.banner-subheading-h3 {
     color: #fff;
     font-family: "Poppins", Sans-serif;
     font-size: 20px;
     font-weight: 600;
     text-transform: capitalize;
 }
-.login-title-h3{
+
+.login-title-h3 {
     color: #11375F;
     font-family: "Poppins", Sans-serif;
     font-size: 35px;
     font-weight: 600;
     text-transform: capitalize;
 }
-.login-title-h5{
+
+.login-title-h5 {
     color: #11375F;
     font-family: "Poppins", Sans-serif;
     font-size: 18px;
     font-weight: 500;
     text-transform: capitalize;
 }
-.login-form-card{
+
+.login-form-card {
     background-color: #dfecf8;
     border-radius: 30px;
     padding: 20px;
@@ -185,50 +196,109 @@ body{
 }
 
 
-.tbl-card{
+.tbl-card {
     border-radius: 25px;
     overflow: hidden;
 }
-.tbl-blue-theme th{
+
+.tbl-blue-theme th {
     text-align: -webkit-match-parent;
     padding: 15px 30px !important;
-    background: #154171!important;
+    background: #154171 !important;
     color: #fff !important;
 }
-.tbl-blue-theme td{
+
+.tbl-blue-theme td {
     padding: 15px 30px !important;
 }
-.table .btn{
+
+.table .btn {
     border-radius: 50px;
 }
+
 .table-responsive::-webkit-scrollbar {
     height: 12px;
-  }
-  
-  .table-responsive::-webkit-scrollbar-thumb {
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
     background: #b0c9e5;
     border-radius: 10px;
-  }
-  
-  .table-responsive::-webkit-scrollbar-thumb:hover {
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
     background: #b0c9e5;
-  }
-  .w-max-content{
+}
+
+.w-max-content {
     width: max-content;
-  }
-.d-none-desktop{
+}
+
+.d-none-desktop {
     display: none;
 }
 
-  @media only screen and (max-width:767px) {
-    table{
+.modal-header{
+    background: #eff7ff;
+    color: #11375F;
+    font-weight: 600;
+    font-size: 20px;
+}
+.modal-closebtn{
+    border: none;
+    background: transparent;
+}
+.modal-closebtn span{
+    color: #11375F;
+}
+
+@media only screen and (max-width:767px) {
+  
+    table {
         width: max-content !important;
     }
-    .d-none-desktop{
+
+    .d-none-desktop {
         display: block !important;
     }
-    .d-none-mobile{
+
+    .d-none-mobile {
         display: none;
     }
-    
-  }
+    .tbl-blue-theme td {
+        padding: 5px 20px !important;
+    }
+    .tbl-blue-theme th {
+        padding: 15px 20px !important;
+    }
+    .btn {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: normal;
+        padding: 7px 10px;
+    }
+    .btn-info {
+        font-size: 16px !important;
+        text-transform: capitalize;
+        color: #fff;
+        background-color: #2065AE;
+        border-radius: 50px;
+        padding: 5px 15px !important;
+    }
+    .btn-info i{
+        font-size: 16px;
+    }
+
+}
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+    table {
+        width: max-content !important;
+    }
+}
+@media only screen and (min-width:992px) and (max-width:1024px) {
+    table {
+        width: 100%!important;
+    }
+}

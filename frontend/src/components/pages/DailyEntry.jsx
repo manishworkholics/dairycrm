@@ -175,7 +175,7 @@ const DailyEntry = () => {
               </div>
             </div>
             <div className='d-flex justify-content-end'>
-              <button type='button' className='btn btn-info px-5 my-5' onClick={addbulkentry}> Add Entry <span><i class="fa-solid fa-plus"></i></span></button>
+              <button type='button' className='btn btn-info my-5' onClick={addbulkentry}> Add Entry <span><i class="fa-solid fa-plus"></i></span></button>
             </div>
           </div>
         </div>
