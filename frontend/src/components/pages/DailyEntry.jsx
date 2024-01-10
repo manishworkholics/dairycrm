@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Navbar from '../Template/Navbar'
 
 const DailyEntry = () => {
   const [data, setData] = useState();
@@ -78,6 +79,7 @@ const DailyEntry = () => {
 
   return (
     <>
+    < Navbar/>
       <div className="container-fluid p-0">
         <div className="page-banner">
           <div className="banner-content-area">

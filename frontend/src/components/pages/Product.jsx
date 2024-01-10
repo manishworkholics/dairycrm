@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import dateFormat from "dateformat";
 import { Modal } from "react-bootstrap";
-
+import Navbar from '../Template/Navbar'
 
 const Product = () => {
   const [deleteid, Setdeleteid] = useState('')
@@ -104,6 +104,7 @@ const Product = () => {
 
   return (
     <>
+    < Navbar/>
       <div className="container-fluid p-0">
         <div className="page-banner">
           <div className="banner-content-area">

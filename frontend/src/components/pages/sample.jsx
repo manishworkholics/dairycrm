@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import Navbar from '../Template/Navbar'
 
 const DailyEntry = () => {
   const [data, setData] = useState();
@@ -56,6 +56,7 @@ const DailyEntry = () => {
 
   return (
     <>
+   < Navbar/>
       <div className='container mt-1'>
         <div className='row'>
           <div className='col-md-12'>

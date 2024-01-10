@@ -46,9 +46,9 @@ const Navbar = () => {
                                             <img src={require("../img/profile-img.jpg")} className='avatar profile img-fluid rounded' alt="" />
                                         </Link>
                                         <div className="dropdown-menu dropdown-menu-end">
-                                            <Link to="/" className='dropdown-item'>Profile</Link>
-                                            <Link to="/" className='dropdown-item'>Setting</Link>
-                                            <Link to="/" className='dropdown-item'>LogOut</Link>
+                                            <Link to="/home" className='dropdown-item'>Profile</Link>
+                                            <Link to="/home" className='dropdown-item'>Setting</Link>
+                                            <Link to="/home" className='dropdown-item'>LogOut</Link>
                                         </div>
                                     </li>
                                 </ul>
