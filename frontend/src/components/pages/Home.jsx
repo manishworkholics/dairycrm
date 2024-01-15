@@ -26,7 +26,7 @@ const Home = () => {
           <main className='content px-3 py-2'>
             <div className='row d-flex justify-content-center'>
               <div className="col-12 col-md-6 col-lg-3">
-                <div className='col-md-12 mt-3'>
+                <div className='col-md-12 '>
                   <h3 className='login-title-h3 text-center'>Login</h3>
                 </div>
                 <div className="col-12">
@@ -42,9 +42,9 @@ const Home = () => {
                             <label for="exampleInputPassword1" class="form-label login-title-h5">Password <span className="ms-2"><i class="fa-solid fa-key"></i></span></label>
                             <input type="password" class="form-control  rounded-pill" id="exampleInputPassword1" />
                           </div>
-                          <div className="mb-3 text-center">
+                          {/* <div className="mb-3 text-center">
                             <Link to="/" class="text text-links">Forgot Password</Link>
-                          </div>
+                          </div> */}
                           <div className='d-flex justify-content-center mt-3 mb-3'>
                             <Link to="/home/product"><button type="submit" class="btn btn-info">Submit</button></Link>
                           </div>
