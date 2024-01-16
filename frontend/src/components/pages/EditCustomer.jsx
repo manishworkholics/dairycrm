@@ -108,7 +108,7 @@ const EditCustomer = () => {
                             <div className="row">
                                 <div className="col-12">
                                     <h2 className="banner-heading-h2">Edit Customer</h2>
-                                    <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Edit Customer</h3>
+                                    <h3 className="banner-subheading-h3">Home<span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Customer<span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Edit Customer</h3>
                                 </div>
                             </div>
                         </div>
