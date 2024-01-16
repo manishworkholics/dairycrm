@@ -1,85 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import dateFormat from "dateformat";
-import { Modal } from "react-bootstrap";
 import Navbar from '../Template/Navbar'
 import Home from './Home';
 
-const Cutomer = () => {
+const Reports = () => {
   const usertoken = sessionStorage.getItem('token')
-  const [deleteid, Setdeleteid] = useState('')
   const [data, setData] = useState();
-  const [product, setproduct] = useState();
-  const [post, setPost] = useState({ name: '', number: '', adress: '', product: '' });
-  const [edit, setedit] = useState({ name: '', number: '', adress: '' });
-  const [showModal, setShowModal] = useState(false);
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
-  const [showeditModal, seteditShowModal] = useState(false);
-  const handleeditClose = () => seteditShowModal(false);
-
-  const handleeditShow = (val) => {
-    seteditShowModal(true);
-    setedit(val)
-  }
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setPost({ ...post, [name]: value });
-  };
-
-  const handleChanges = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setedit({ ...edit, [name]: value });
-  };
-
-  const getproduct = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-product`)
-      .then((res) => {
-        return res.json()
-      }).then((data) => {
-        setproduct(data)
-      })
-  }
-
-  const addcustomer = async (e) => {
-    e.preventDefault();
-    const { name, number, adress } = post
-    const fetchdata = fetch('http://206.189.130.102:6060/api/v1/add-customer', {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, number: number, adress: adress, product: inputList }),
-    })
-    const response = await fetchdata;
-    await response.json();
-    if (response.status === 200) {
-      alert('cutomer add successfully')
-      handleClose();
-      getcustomer();
-      setInputList([{ id: 1, product_name: '', product_quantity: '' },])
-      setPost({ name: '', number: '', adress: '' })
-    } else {
-      alert("Invalid Credentials");
-    }
-  }
-
-  const upadateproduct = async (id) => {
-    const { name, number, adress } = edit
-    const fetchdata = fetch(`http://206.189.130.102:6060/api/v1/update-customer/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, number: number, adress: adress }),
-    })
-    const response = await fetchdata;
-    await response.json();
-    if (response.status === 200) {
-      handleeditClose();
-      getcustomer();
-    } else {
-      alert("Invalid Credentials");
-    }
-  }
+  const [datas, setDatas] = useState();
+  const [customer, setcustomer] = useState();
+  const [startdate, setstartdate] = useState('');
+  const [enddate, setenddate] = useState('');
 
   const getcustomer = () => {
     fetch(`http://206.189.130.102:6060/api/v1/get-customer`)
@@ -90,48 +19,42 @@ const Cutomer = () => {
       })
   }
 
-  function deleteproduct(_id) {
-    fetch(`http://206.189.130.102:6060/api/v1/delete-customer/${_id}`, {
-      method: "DELETE"
-    }).then((result) => {
-      result.json().then((res) => {
-        getcustomer();
+  const getcustomerbyid = () => {
+    fetch(`http://206.189.130.102:6060/api/v1/get-customer/${customer}?startDate=${startdate}&endDate=${enddate}`)
+      .then((res) => {
+        return res.json()
+      }).then((data) => {
+        setDatas(data)
       })
-    })
+  }
+
+  function selectcustomer(e) {
+    setcustomer(e.target.value)
+  }
+  function selectstartdate(e) {
+    setstartdate(e.target.value)
+  }
+  function selectenddate(e) {
+    setenddate(e.target.value)
+  }
+
+  function clear() {
+    window.location.reload()
   }
 
   useEffect(() => {
     getcustomer();
-    getproduct();
-  }, [])
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
-
-  const [inputList, setInputList] = useState([{ id: 1, product_name: '', product_quantity: '' },]);
-
-  // Add new input fields
-  const handleAddInput = () => {
-    const newId = inputList[inputList.length - 1].id + 1;
-    setInputList([...inputList, { id: newId, product_name: '', product_quantity: '' }]);
-  };
-
-  // Remove input fields
-  const handleRemoveInput = (id) => {
-    const updatedList = inputList.filter((item) => item.id !== id);
-    setInputList(updatedList);
-  };
-
-  // Handle input change for both fields
-  const handleInputChange = (id, field, event) => {
-    const newInputList = inputList.map((item) =>
-      item.id === id ? { ...item, [field]: event.target.value } : item
-    );
-    setInputList(newInputList);
-  };
+  useEffect(() => {
+    getcustomerbyid();
+  }, [customer])// eslint-disable-line react-hooks/exhaustive-deps
 
 
   if (!usertoken) {
     return <Home />
   }
+
   return (
     <>
       < Navbar />
@@ -141,8 +64,8 @@ const Cutomer = () => {
             <div className="container">
               <div className="row">
                 <div className="col-12">
-                  <h2 className="banner-heading-h2">Customer</h2>
-                  <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Customer</h3>
+                  <h2 className="banner-heading-h2">Reports</h2>
+                  <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Reports</h3>
                 </div>
               </div>
             </div>
@@ -154,190 +77,99 @@ const Cutomer = () => {
       </div>
       <div className='container my-5 pb-5'>
         <div className='row'>
-          <div className='col-md-12'>
-            <div className='d-flex justify-content-end'>
-              <button type="button" className="btn btn-info my-1" onClick={handleShow}>Add <span><i class="fa-solid fa-plus"></i></span></button>
-            </div>
-            <div className="card tbl-card mt-3">
-              <div className="table-responsive">
-                <table className="table table-striped tbl-blue-theme">
-                  <thead>
-                    <tr>
-                      <th>S.no</th>
-                      <th>Name</th>
-                      <th>Number</th>
-                      <th>Date</th>
-                      <th className='text-center'>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data?.data?.map((val, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{index + 1}</td>
-                          <td>{val.name}</td>
-                          <td>{val.number}</td>
-                          <td>{dateFormat(val.createdAt)}</td>
-                          <td className='d-flex justify-content-center'>
-                            <button type="button" className="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span class="material-symbols-outlined">edit</span></button>
-                            <button type="button" className="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
-
-                          </td>
-                        </tr>
-                      )
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header >
-          <Modal.Title> <span className="text-red">Add Cutomer</span>  </Modal.Title>
-          <button type="button" className="close modal-closebtn" data-dismiss="modal" aria-label="Close" onClick={handleClose}>
-            <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
-          </button>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="container">
+          <div className="card tbl-card mt-3">
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-12 px-4">
+                <div className="row">
+                  <div className='col-md-3 my-4'>
 
-                <div className="mb-3 mt-3">
-                  <label htmlFor="name" className="form-label"> Name:</label>
-                  <input type="text" className="form-control" id="name" placeholder="Cutomer Name" name="name" value={post.name} onChange={handleChange} />
-                </div>
-                <div className="mb-3 mt-3">
-                  <label htmlFor="name" className="form-label">Number:</label>
-                  <input type="text" className="form-control" id="name" placeholder="Cutomer Number" name="number" value={post.number} onChange={handleChange} />
-                </div>
-                <div className="mb-3 mt-3">
-                  <label htmlFor="name" className="form-label">Adress:</label>
-                  <input type="text" className="form-control" id="name" placeholder="Cutomer address" name="adress" value={post.adress} onChange={handleChange} />
-                </div>
+                    <select class="form-select" onChange={selectcustomer}>
+                      <option value="" disabled selected hidden>Select Name</option>
+                      {data?.data?.map((val, index) => {
+                        return (
+                          <option key={index} value={val._id}>{val.name}</option>
+                        )
+                      })}
+                    </select>
 
-                <div className="mb-3 mt-3">
-                  <table className="w-100">
-                    <thead className=''>
-                      <tr className='row d-flex justify-content-between mb-3'>
-                        <th className='col-4 text-center'>Product</th>
-                        <th className='col-4 text-center'>Quantity</th>
-                        <th className='col-4 text-center'>Action</th>
+                  </div>
+
+                  <div className='col-md-3 my-4'>
+                    <input class="form-control" type='date' onChange={selectstartdate} />
+                  </div>
+
+                  <div className='col-md-3 my-4'>
+                    <input class="form-control" type='date' onChange={selectenddate} />
+                  </div>
+
+                  <div className='col-lg-3 col-md-12 my-4'>
+                    <div className='d-flex'>
+                      <button className='btn btn-success rounded-pill mx-3 px-4' onClick={getcustomerbyid}>Find</button>
+                      <button className='btn btn-secondary rounded-pill px-4' onClick={clear}>clear</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='col-md-12 mt-3 p-0'>
+                <div className="table-responsive">
+                  <table class="table table-striped tbl-blue-theme">
+
+                    <thead>
+                      <tr>
+                        <th>S.no</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price/per unit</th>
+                        <th>Amount</th>
+                        <th>Order date</th>
                       </tr>
                     </thead>
+
                     <tbody>
-                      {inputList.map((item, index) => (
-                        <tr key={index} className='row d-flex justify-content-between'>
-                          <td className='col-4 text-center mb-3'>
-                            <select className='me-4' class="form-select" onChange={(e) => handleInputChange(item.id, 'product_name', e)}>
-                              <option value="" disabled selected hidden>Select Product</option>
-                              {product?.product?.map((val, index) => {
-                                return (
-                                  <option key={index} value={val._id}>{val.name}/{val.unit}</option>
-                                )
-                              })}
+                      {datas?.data?.dailyEntries?.map((val, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{val?.products?.map((val) => {
+                              return (
+                                <p>{val?.type},</p>
+                              )
+                            })}</td>
+                            <td>{val?.products?.map((val) => {
+                              return (
+                                <p>{val?.quantity},</p>
+                              )
+                            })}</td>
+                            <td>{val?.products?.map((val) => {
+                              return (
+                                <p>{val?.price},</p>
+                              )
+                            })}</td>
+                            <td>{val?.products?.map((val) => {
+                              return (
+                                <p>{(parseFloat(val?.quantity) || 0) * (parseFloat(val?.price) || 0)}</p>
+                              )
+                            })}</td>
+                            {val?.date === null ? 0 : <td>{val?.date.slice(0, 10)}</td>}
 
-
-                            </select>
-
-                          </td>
-
-                          <td className='col-4 text-center mb-3'>
-                            <input
-                              type="text"
-                              value={item.product_quantity}
-                              onChange={(e) => handleInputChange(item.id, 'product_quantity', e)}
-                              placeholder="quantity"
-
-                              className='me-4 form-control'
-                            />
-                          </td>
-                          <td className='col-4 text-center'>
-                            {inputList.length > 1 && (
-                              <div className=""> <button className="btn btn-secondary mx-auto mb-3" onClick={() => handleRemoveInput(item.id)}>Remove</button></div>
-                            )}
-                            {index === inputList.length - 1 && (
-                              <div className=""> <button className='btn btn-success mx-auto mb-3' onClick={handleAddInput}>Add More</button></div>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
+                          </tr>
+                        )
+                      })}
                     </tbody>
+
                   </table>
                 </div>
-                <button type="submit" className="btn btn-info" onClick={addcustomer}>Submit</button>
               </div>
             </div>
           </div>
-        </Modal.Body>
-      </Modal>
-
-      <Modal show={showeditModal} onHide={handleeditClose}>
-        <Modal.Header >
-          <Modal.Title> <span className="text-red">Edit Cutomer</span>  </Modal.Title>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={handleeditClose}>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <form >
-                  <div className="mb-3 mt-3">
-                    <label htmlFor="name" className="form-label">Cutomer Name:</label>
-                    <input type="text" className="form-control" id="name" name="name" value={edit.name} onChange={handleChanges} />
-                  </div>
-                  <div className="mb-3 mt-3">
-                    <label htmlFor="name" className="form-label">Cutomer Number:</label>
-                    <input type="text" className="form-control" id="name" name="number" value={edit.number} onChange={handleChanges} />
-                  </div>
-                  <div className="mb-3 mt-3">
-                    <label htmlFor="name" className="form-label">Cutomer Adress:</label>
-                    <input type="text" className="form-control" id="name" name="adress" value={edit.adress} onChange={handleChanges} />
-                  </div>
-                  <button type="submit" className="btn btn-primary" onClick={() => { upadateproduct(edit._id) }}>Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
 
 
-      <div className="modal fade" id="myModal">
-        <div className="modal-dialog">
-          <div className="modal-content">
 
 
-            <div className="modal-header">
-
-              <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-
-            <div className="modal-body">
-              Do You Want To Delete Permanently
-            </div>
-
-
-            <div className="modal-footer">
-              <button type="button" className="btn" data-bs-dismiss="modal" onClick={() => deleteproduct(deleteid)}>Yes</button>
-            </div>
-
-          </div>
         </div>
       </div>
-
-
     </>
   )
 }
 
-
-
-export default Cutomer
+export default Reports

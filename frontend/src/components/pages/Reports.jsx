@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../Template/Navbar'
 import Home from './Home';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const Reports = () => {
   const usertoken = sessionStorage.getItem('token')
@@ -50,6 +52,37 @@ const Reports = () => {
     getcustomerbyid();
   }, [customer])// eslint-disable-line react-hooks/exhaustive-deps
 
+  const exportReport = () => {
+    if (!datas?.data?.dailyEntries || datas.data.dailyEntries.length === 0) {
+      alert('No data to export.');
+      return;
+    }
+
+    const pdf = new jsPDF();
+
+    pdf.text('Report Data', 20, 10);
+
+    const headers = [['S.no', 'Product', 'Quantity', 'Price/per unit', 'Amount', 'Order date']];
+    const rows = datas.data.dailyEntries.map((val, index) => [
+      index + 1,
+      val?.products?.map((product) => product.type).join(', '),
+      val?.products?.map((product) => product.quantity).join(', '),
+      val?.products?.map((product) => product.price).join(', '),
+      val?.products
+        ?.map((product) => (parseFloat(product.quantity) || 0) * (parseFloat(product.price) || 0))
+        .join(', '),
+      val.date === null ? 'N/A' : val.date.slice(0, 10),
+    ]);
+
+    pdf.autoTable({
+      head: headers,
+      body: rows,
+      startY: 20,
+      margin: { top: 20 },
+    });
+
+    pdf.save('report.pdf');
+  };
 
   if (!usertoken) {
     return <Home />
@@ -106,6 +139,7 @@ const Reports = () => {
                     <div className='d-flex'>
                       <button className='btn btn-success rounded-pill mx-3 px-4' onClick={getcustomerbyid}>Find</button>
                       <button className='btn btn-secondary rounded-pill px-4' onClick={clear}>clear</button>
+                      <button className='btn btn-primary rounded-pill px-4 mx-3' onClick={exportReport}>Export</button>
                     </div>
                   </div>
                 </div>
