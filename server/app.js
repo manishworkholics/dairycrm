@@ -19,10 +19,12 @@ app.use(function (req, res, next) {
 const product = require('./route/productRoute')
 const customer = require('./route/customerRoute')
 const unit = require('./route/unitRoute')
+const admin = require('./route/adminRoute')
 
 app.use('/api/v1', product)
 app.use('/api/v1', customer)
 app.use('/api/v1', unit)
+app.use('/api/v1', admin)
 
 
 
