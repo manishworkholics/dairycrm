@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import dateFormat from "dateformat";
 import { Modal } from "react-bootstrap";
 import Navbar from '../Template/Navbar'
+import Home from './Home';
 
 const Product = () => {
+  const usertoken = sessionStorage.getItem('token')
   const [deleteid, Setdeleteid] = useState('')
   const [data, setData] = useState();
   const [unit, setUnit] = useState();
@@ -101,10 +103,12 @@ const Product = () => {
     getunit();
   }, [])
 
-
+  if (!usertoken) {
+    return <Home />
+  }
   return (
     <>
-    < Navbar/>
+      < Navbar />
       <div className="container-fluid p-0">
         <div className="page-banner">
           <div className="banner-content-area">

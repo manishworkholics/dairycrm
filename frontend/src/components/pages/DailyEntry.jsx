@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Template/Navbar'
+import Home from './Home';
 
 const DailyEntry = () => {
+  const usertoken = sessionStorage.getItem('token')
   const [data, setData] = useState();
   const [selectedDate, setSelectedDate] = useState('');
   const [editedQuantities, setEditedQuantities] = useState({});
@@ -76,6 +78,10 @@ const DailyEntry = () => {
         getcustomer();
       });
   };
+
+  if (!usertoken) {
+    return <Home />
+  }
 
   return (
     <>

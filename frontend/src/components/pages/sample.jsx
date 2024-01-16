@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../Template/Navbar'
+import Home from './Home';
 
 const DailyEntry = () => {
+  const usertoken = sessionStorage.getItem('token')
   const [data, setData] = useState();
 
   const getcustomer = () => {
@@ -53,10 +55,12 @@ const DailyEntry = () => {
       })
   }
 
-
+  if (!usertoken) {
+    return <Home />
+  }
   return (
     <>
-   < Navbar/>
+      < Navbar />
       <div className='container mt-1'>
         <div className='row'>
           <div className='col-md-12'>

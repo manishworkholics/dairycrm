@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import dateFormat from "dateformat";
 import { Modal } from "react-bootstrap";
 import Navbar from '../Template/Navbar'
+import Home from './Home';
 
 const Cutomer = () => {
+  const usertoken = sessionStorage.getItem('token')
   const [deleteid, Setdeleteid] = useState('')
   const [data, setData] = useState();
   const [product, setproduct] = useState();
@@ -126,9 +128,13 @@ const Cutomer = () => {
     setInputList(newInputList);
   };
 
+
+  if (!usertoken) {
+    return <Home />
+  }
   return (
     <>
-    < Navbar/>
+      < Navbar />
       <div className="container-fluid p-0">
         <div className="page-banner">
           <div className="banner-content-area">
@@ -227,7 +233,7 @@ const Cutomer = () => {
                       {inputList.map((item, index) => (
                         <tr key={index} className='row d-flex justify-content-between'>
                           <td className='col-4 text-center mb-3'>
-                            <select className='me-4'  class="form-select" onChange={(e) => handleInputChange(item.id, 'product_name', e)}>
+                            <select className='me-4' class="form-select" onChange={(e) => handleInputChange(item.id, 'product_name', e)}>
                               <option value="" disabled selected hidden>Select Product</option>
                               {product?.product?.map((val, index) => {
                                 return (
@@ -246,7 +252,7 @@ const Cutomer = () => {
                               value={item.product_quantity}
                               onChange={(e) => handleInputChange(item.id, 'product_quantity', e)}
                               placeholder="quantity"
-                              
+
                               className='me-4 form-control'
                             />
                           </td>

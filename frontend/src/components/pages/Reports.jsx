@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../Template/Navbar'
+import Home from './Home';
+
 const Reports = () => {
+  const usertoken = sessionStorage.getItem('token')
   const [data, setData] = useState();
   const [datas, setDatas] = useState();
   const [customer, setcustomer] = useState();
+  const [startdate, setstartdate] = useState('');
+  const [enddate, setenddate] = useState('');
 
   const getcustomer = () => {
     fetch(`http://206.189.130.102:6060/api/v1/get-customer`)
@@ -15,7 +20,7 @@ const Reports = () => {
   }
 
   const getcustomerbyid = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-customer/${customer}`)
+    fetch(`http://206.189.130.102:6060/api/v1/get-customer/${customer}?startDate=${startdate}&endDate=${enddate}`)
       .then((res) => {
         return res.json()
       }).then((data) => {
@@ -25,6 +30,16 @@ const Reports = () => {
 
   function selectcustomer(e) {
     setcustomer(e.target.value)
+  }
+  function selectstartdate(e) {
+    setstartdate(e.target.value)
+  }
+  function selectenddate(e) {
+    setenddate(e.target.value)
+  }
+
+  function clear() {
+    window.location.reload()
   }
 
   useEffect(() => {
@@ -36,10 +51,12 @@ const Reports = () => {
   }, [customer])// eslint-disable-line react-hooks/exhaustive-deps
 
 
-
+  if (!usertoken) {
+    return <Home />
+  }
   return (
     <>
-    < Navbar/>
+      < Navbar />
       <div className="container-fluid p-0">
         <div className="page-banner">
           <div className="banner-content-area">
@@ -77,17 +94,17 @@ const Reports = () => {
                   </div>
 
                   <div className='col-md-3 my-4'>
-                    <input class="form-control" type='date' />
+                    <input class="form-control" type='date' onChange={selectstartdate} />
                   </div>
 
                   <div className='col-md-3 my-4'>
-                    <input class="form-control" type='date' />
+                    <input class="form-control" type='date' onChange={selectenddate} />
                   </div>
 
                   <div className='col-lg-3 col-md-12 my-4'>
                     <div className='d-flex'>
-                      <button className='btn btn-success rounded-pill mx-3 px-4'>Find</button>
-                      <button className='btn btn-secondary rounded-pill px-4'>clear</button>
+                      <button className='btn btn-success rounded-pill mx-3 px-4' onClick={getcustomerbyid}>Find</button>
+                      <button className='btn btn-secondary rounded-pill px-4' onClick={clear}>clear</button>
                     </div>
                   </div>
                 </div>

@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom';
 import Navbar from '../Template/Navbar'
+import Home from './Home';
 
 const EditCustomer = () => {
     const [inputData, setInputData] = useState({ id: 1, product_name: '', product_quantity: '' })
-
+    const usertoken = sessionStorage.getItem('token')
     const [product, setproduct] = useState();
     let location = useLocation();
     const { data } = location.state
     let { id } = useParams();
     const [edit, setedit] = useState({ name: data.name, number: data.number, adress: data.adress });
-    const [item, setItem] = useState(
-        data?.product?.map((val) => {
-            return (
-                { id: 1, product_name: val?.product_name?._id, product_quantity: val?.product_quantity }
-            )
-        })
-    )
+    const item = data?.product?.map((val) => {
+        return (
+            { id: 1, product_name: val?.product_name?._id, product_quantity: val?.product_quantity }
+        )
+    })
+
 
     const [catArray, setCatArray] = useState(item)
     const [index, setIndex] = useState()
@@ -95,7 +95,9 @@ const EditCustomer = () => {
         return productItem?.name || '';
     };
 
-
+    if (!usertoken) {
+        return <Home />
+    }
     return (
         <>
             < Navbar />

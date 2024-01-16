@@ -3,8 +3,10 @@ import dateFormat from "dateformat";
 import { Modal } from "react-bootstrap";
 import Navbar from '../Template/Navbar'
 import { Link } from 'react-router-dom';
+import Home from './Home';
 
 const Cutomer = () => {
+  const usertoken = sessionStorage.getItem('token')
   const [inputData, setInputData] = useState({ id: 1, product_name: '', product_quantity: '' })
   const [deleteid, Setdeleteid] = useState('')
   const [data, setData] = useState();
@@ -118,6 +120,10 @@ const Cutomer = () => {
     const productItem = product?.product?.find((val) => val._id === productId);
     return productItem?.name || '';
   };
+
+  if (!usertoken) {
+    return <Home />
+  }
 
   return (
     <>

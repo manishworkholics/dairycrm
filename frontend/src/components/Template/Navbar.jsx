@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+    const logout = () => {
+        sessionStorage.clear();
+    }
 
     return (
         <>
@@ -46,9 +49,9 @@ const Navbar = () => {
                                             <img src={require("../img/profile-img.jpg")} className='avatar profile img-fluid rounded' alt="" />
                                         </Link>
                                         <div className="dropdown-menu dropdown-menu-end">
-                                            <Link to="/home" className='dropdown-item'>Profile</Link>
-                                            <Link to="/home" className='dropdown-item'>Setting</Link>
-                                            <Link to="/home" className='dropdown-item'>LogOut</Link>
+                                            {/* <Link to="/home" className='dropdown-item'>Profile</Link>
+                                            <Link to="/home" className='dropdown-item'>Setting</Link> */}
+                                            <Link to="/home" className='dropdown-item' onClick={logout}>LogOut</Link>
                                         </div>
                                     </li>
                                 </ul>
