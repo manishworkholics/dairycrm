@@ -58,21 +58,29 @@ const Reports = () => {
       return;
     }
 
+    let totalAmount = 0;
+
     const pdf = new jsPDF();
 
     pdf.text('Report Data', 20, 10);
 
     const headers = [['S.no', 'Product', 'Quantity', 'Price/per unit', 'Amount', 'Order date']];
-    const rows = datas.data.dailyEntries.map((val, index) => [
-      index + 1,
-      val?.products?.map((product) => product.type).join(', '),
-      val?.products?.map((product) => product.quantity).join(', '),
-      val?.products?.map((product) => product.price).join(', '),
-      val?.products
+    const rows = datas.data.dailyEntries.map((val, index) => {
+      const amount = val?.products
         ?.map((product) => (parseFloat(product.quantity) || 0) * (parseFloat(product.price) || 0))
-        .join(', '),
-      val.date === null ? 'N/A' : val.date.slice(0, 10),
-    ]);
+        .reduce((acc, curr) => acc + curr, 0);
+
+      totalAmount += amount;
+
+      return [
+        index + 1,
+        val?.products?.map((product) => product.type).join(', '),
+        val?.products?.map((product) => product.quantity).join(', '),
+        val?.products?.map((product) => product.price).join(', '),
+        amount.toFixed(2), // Display the amount directly in the row
+        val.date === null ? 'N/A' : val.date.slice(0, 10),
+      ];
+    });
 
     pdf.autoTable({
       head: headers,
@@ -80,6 +88,8 @@ const Reports = () => {
       startY: 20,
       margin: { top: 20 },
     });
+
+    pdf.text(`Total Amount: ${totalAmount.toFixed(2)}`, 20, pdf.autoTable.previous.finalY + 10);
 
     pdf.save('report.pdf');
   };
