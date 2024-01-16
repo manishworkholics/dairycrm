@@ -79,7 +79,7 @@ const DailyEntry = () => {
 
   return (
     <>
-    < Navbar/>
+      < Navbar />
       <div className="container-fluid p-0">
         <div className="page-banner">
           <div className="banner-content-area">
@@ -102,7 +102,9 @@ const DailyEntry = () => {
           <div className='col-md-12'>
             <div className="card tbl-card mt-3">
               <div className='d-flex align-items-center p-4'>
-                <h4 className='mb-0 me-3'>Selected Date: {selectedDate}</h4>
+                <div className="card-heading">
+                  <h4 className='mb-0 me-3'>Selected Date: {selectedDate}</h4>
+                </div>
                 <div className="">
                   <input
                     className="form-control "
@@ -113,7 +115,7 @@ const DailyEntry = () => {
                 </div>
               </div>
               <div className="table-responsive">
-                <table className="table table-striped tbl-blue-theme w-max-content">
+                <table className="table table-striped tbl-blue-theme w-max-content daily-entry-data-tbl">
                   <thead>
                     <tr>
                       <th>S.no</th>
