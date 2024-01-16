@@ -25,17 +25,50 @@ exports.getcustomer = async (req, res) => {
     }
 }
 
+// exports.getcustomerbyId = async (req, res) => {
+//     try {
+//         const data = await customer.findById({ _id: req.params.id })
+//         res.status(200).json({
+//             success: true,
+//             data
+//         })
+//     } catch (error) {
+//         res.send(error)
+//     }
+// }
+
 exports.getcustomerbyId = async (req, res) => {
     try {
-        const data = await customer.findById({ _id: req.params.id })
+        const customerId = req.params.id;
+        const startDate = req.query.startDate;
+        const endDate = req.query.endDate;
+
+        let filter = { _id: customerId };
+
+        if (startDate && endDate) {
+            // Adjust the date filter to include entries on the start date and exclude entries on the end date
+            filter['dailyEntries.date'] = {
+                $gte: new Date(startDate),
+                $lt: new Date(new Date(endDate).getTime() + 24 * 60 * 60 * 1000) // Add one day to include entries up to the end of the specified day
+            };
+        }
+
+        const data = await customer.findOne(filter);
+
         res.status(200).json({
             success: true,
             data
-        })
+        });
     } catch (error) {
-        res.send(error)
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
     }
-}
+};
+
+
+
 
 
 exports.updatecustomer = async (req, res) => {
