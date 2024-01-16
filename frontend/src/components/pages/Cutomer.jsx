@@ -207,10 +207,10 @@ const Cutomer = () => {
                   <input type="text" className="form-control" id="name" placeholder="Cutomer address" name="adress" value={post.adress} onChange={handleChange} />
                 </div>
 
-                <div className="mb-3 mt-3">
-                  <div className="col-md-4">
-                    <label htmlFor="name" className='inputHead'>Product</label> <br />
-                    <select class="form-select inputAdd" name='product_name' value={inputData.product_name || product_name || ''} onChange={catChange}>
+                <div className="row">
+                  <div className="col-md-4 mb-3 mt-3">
+                    <label htmlFor="name" className='form-label'>Product</label> <br />
+                    <select class="form-select" name='product_name' value={inputData.product_name || product_name || ''} onChange={catChange}>
                       <option value="">Select product</option>
                       {product?.product?.map((val, index) => {
                         return (
@@ -221,14 +221,14 @@ const Cutomer = () => {
                       })}
                     </select>
                   </div>
-                  <div className="col-md-4">
-                    <label htmlFor="name" className='inputHead'>Quantity</label> <br />
-                    <input type="number" className='inputAdd' name='product_quantity' placeholder='Enter number' value={inputData.product_quantity || ''} onChange={catChange} />
+                  <div className="col-md-4 mb-3 mt-3">
+                    <label htmlFor="name" className='form-label'>Quantity</label> <br />
+                    <input type="number" className='form-control' name='product_quantity' placeholder='Enter no.' value={inputData.product_quantity || ''} onChange={catChange} />
                   </div>
-                  <div className="col-md-4 ">
+                  <div className="col-md-4 mb-3 mt-3 d-flex align-items-end">
                     <div className="row addfarmHead placebtn">
                       <div>
-                        <button className='addmultis' onClick={!bolin ? addinputdata : updateinfo}>
+                        <button className='addmultis btn btn-secondary' onClick={!bolin ? addinputdata : updateinfo}>
                           {!bolin ? `Add product` : `Update product`}
                         </button>
                       </div>
@@ -241,7 +241,7 @@ const Cutomer = () => {
                       <tr className='fcolor'>
                         <th>Product</th>
                         <th>Quantity</th>
-                        <th>Action</th>
+                        <th className='text-center'>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -251,12 +251,12 @@ const Cutomer = () => {
                             <tr key={i}>
                               <td>{renderProductName(item.product_name)}</td>
                               <td>{item.product_quantity}</td>
-                              <td>
-                                <button onClick={() => updateCat(i)} className="delbtn">
-                                  <span className="material-symbols-outlined action-icon">edit</span>
+                              <td className='d-flex justify-content-center'>
+                                <button onClick={() => updateCat(i)} className="delbtn btn btn-warning mx-1">
+                                  <span className="material-symbols-outlined action-icon m-0">edit</span>
                                 </button>
-                                <button onClick={() => deleteCat(i)} className="delbtn">
-                                  <span className="material-symbols-outlined action-icon">delete</span>
+                                <button onClick={() => deleteCat(i)} className="delbtn btn btn-danger mx-1">
+                                  <span className="material-symbols-outlined action-icon m-0">delete</span>
                                 </button>
                               </td>
                             </tr>

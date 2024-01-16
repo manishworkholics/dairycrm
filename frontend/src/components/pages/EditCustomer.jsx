@@ -94,7 +94,7 @@ const EditCustomer = () => {
         const productItem = product?.product?.find((val) => val._id === productId);
         return productItem?.name || '';
     };
-  
+
 
     return (
         <>
@@ -105,8 +105,8 @@ const EditCustomer = () => {
                         <div className="container">
                             <div className="row">
                                 <div className="col-12">
-                                    <h2 className="banner-heading-h2">Edit-Customer</h2>
-                                    <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Customer</h3>
+                                    <h2 className="banner-heading-h2">Edit Customer</h2>
+                                    <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Edit Customer</h3>
                                 </div>
                             </div>
                         </div>
@@ -117,92 +117,96 @@ const EditCustomer = () => {
                 </div>
             </div>
 
-            <div className="container mb-5">
-                <div className="row">
-                    <div className='col-md-2'></div>
-                    <div className="col-md-4">
-
-                        <div className="mb-3 mt-3">
-                            <label htmlFor="name" className="form-label">Cutomer Name:</label>
-                            <input type="text" className="form-control" id="name" name="name" value={edit.name} onChange={handleChanges} />
-                        </div>
-                        <div className="mb-3 mt-3">
-                            <label htmlFor="name" className="form-label">Cutomer Number:</label>
-                            <input type="text" className="form-control" id="name" name="number" value={edit.number} onChange={handleChanges} />
-                        </div>
-                        <div className="mb-3 mt-3">
-                            <label htmlFor="name" className="form-label">Cutomer Adress:</label>
-                            <input type="text" className="form-control" id="name" name="adress" value={edit.adress} onChange={handleChanges} />
-                        </div>
-                        <button type="submit" className="btn btn-primary" onClick={upadateproduct}>Submit</button>
-
-                    </div>
-                    <div className='col-md-4'>
-
-                        <div className="mb-3 mt-3">
-                            <div className="col-md-4">
-                                <label htmlFor="name" className='inputHead'>Product</label> <br />
-                                <select class="form-select inputAdd" name='product_name' value={inputData.product_name || product_name || ''} onChange={catChange}>
-                                    <option value="">Select product</option>
-                                    {product?.product?.map((val, index) => {
-                                        return (
-                                            <>
-                                                <option key={index} value={val?._id}>{val.name}</option>
-                                            </>
-                                        )
-                                    })}
-                                </select>
+            <div className="container mb-5 edit-customer-card-container">
+                <div className="card edit-customer-card">
+                    <div className="row">
+                        <div className="col-md-6 edit-customer-card-left">
+                            <div className="card-heading">
+                                <h4>Customer Details</h4>
                             </div>
-                            <div className="col-md-4">
-                                <label htmlFor="name" className='inputHead'>Quantity</label> <br />
-                                <input type="number" className='inputAdd' name='product_quantity' placeholder='Enter number' value={inputData.product_quantity || ''} onChange={catChange} />
+                            <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Cutomer Name :</label>
+                                <input type="text" className="form-control" id="name" name="name" value={edit.name} onChange={handleChanges} />
                             </div>
-                            <div className="col-md-4 ">
-                                <div className="row addfarmHead placebtn">
-                                    <div>
-                                        <button className='addmultis' onClick={!bolin ? addinputdata : updateinfo}>
-                                            {!bolin ? `Add product` : `Update product`}
-                                        </button>
+                            <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Cutomer Number :</label>
+                                <input type="text" className="form-control" id="name" name="number" value={edit.number} onChange={handleChanges} />
+                            </div>
+                            <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Cutomer Adress :</label>
+                                <input type="text" className="form-control" id="name" name="adress" value={edit.adress} onChange={handleChanges} />
+                            </div>
+                            <button type="submit" className="btn btn-info" onClick={upadateproduct}>Submit</button>
+                        </div>
+                        <div className='col-md-6 edit-customer-card-right'>
+                            <div className="card-heading">
+                                <h4>Product Entry</h4>
+                            </div>
+                            <div className=" row mb-3 mt-3">
+                                <div className="col-12 col-lg-4 col-md-6">
+                                    <label htmlFor="name" className='form-label'>Product</label> <br />
+                                    <select class="form-select" name='product_name' value={inputData.product_name || product_name || ''} onChange={catChange}>
+                                        <option value="">Select product</option>
+                                        {product?.product?.map((val, index) => {
+                                            return (
+                                                <>
+                                                    <option key={index} value={val?._id}>{val.name}</option>
+                                                </>
+                                            )
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="col-12 col-lg-4 col-md-6">
+                                    <label htmlFor="name" className='form-label'>Quantity</label> <br />
+                                    <input type="number" className='form-control' name='product_quantity' placeholder='Enter no.' value={inputData.product_quantity || ''} onChange={catChange} />
+                                </div>
+                                <div className="col-lg-4 col-md-6 d-flex align-items-end">
+                                    <div className="row addfarmHead placebtn">
+                                        <div>
+                                            <button className='addmultis btn btn-secondary' onClick={!bolin ? addinputdata : updateinfo}>
+                                                {!bolin ? `Add product` : `Update product`}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div className="table-responsive">
+                                <table class="table">
+                                    <thead className='tableBord cattable'>
+                                        <tr className='fcolor'>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th className='text-center'>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            catArray && catArray.map((item, i) => {
+                                                return (
+                                                    <tr key={i}>
+                                                        <td>{renderProductName(item.product_name)}</td>
+                                                        <td>{item.product_quantity}</td>
+                                                        <td className='d-flex justify-content-center'>
+                                                            <button className='delbtn btn btn-warning mx-1'>
+                                                                <span onClick={() => updateCat(i)} class="material-symbols-outlined action-icon m-0">
+                                                                    edit
+                                                                </span>
+                                                            </button>
+                                                            <button className='delbtn btn btn-danger mx-1'>
+                                                                <span onClick={() => deleteCat(i)} class="material-symbols-outlined action-icon m-0">
+                                                                    delete
+                                                                </span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-
-                        <table class="table">
-                            <thead className='tableBord cattable'>
-                                <tr className='fcolor'>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    catArray && catArray.map((item, i) => {
-                                        return (
-                                            <tr key={i}>
-                                                <td>{renderProductName(item.product_name)}</td>
-                                                <td>{item.product_quantity}</td>
-                                                <td>
-                                                    <button className='delbtn'>
-                                                        <span onClick={() => updateCat(i)} class="material-symbols-outlined action-icon">
-                                                            edit
-                                                        </span>
-                                                    </button>
-                                                    <button className='delbtn'>
-                                                        <span onClick={() => deleteCat(i)} class="material-symbols-outlined action-icon">
-                                                            delete
-                                                        </span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
                     </div>
-                    <div className='col-md-2'></div>
                 </div>
             </div>
         </>
