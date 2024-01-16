@@ -152,9 +152,11 @@ const Product = () => {
                           <td>{val.name}</td>
                           <td>{val.price}/{val.unit}</td>
                           <td>{dateFormat(val.createdAt)}</td>
-                          <td className='d-flex justify-content-center'>
-                            <button type="button" class="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span class="material-symbols-outlined">edit</span></button>
-                            <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
+                          <td>
+                            <div className='d-flex justify-content-center'>
+                              <button type="button" class="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span class="material-symbols-outlined">edit</span></button>
+                              <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
+                            </div>
                           </td>
                         </tr>
                       )
