@@ -10,8 +10,15 @@ const EditCustomer = () => {
     const { data } = location.state
     let { id } = useParams();
     const [edit, setedit] = useState({ name: data.name, number: data.number, adress: data.adress });
-    const [item, setItem] = useState({ id: 1, product_name: data?.product?.map((val) => val?.product_name?.name), product_quantity: data?.product?.map((val) => val?.product_quantity) })
-    const [catArray, setCatArray] = useState([item])
+    const [item, setItem] = useState(
+        data?.product?.map((val) => {
+            return (
+                { id: 1, product_name: val?.product_name?._id, product_quantity: val?.product_quantity }
+            )
+        })
+    )
+
+    const [catArray, setCatArray] = useState(item)
     const [index, setIndex] = useState()
     const [bolin, setBolin] = useState(false)
 
@@ -57,13 +64,11 @@ const EditCustomer = () => {
 
     }
 
-
     const handleChanges = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         setedit({ ...edit, [name]: value });
     };
-
 
     const upadateproduct = async () => {
         const { name, number, adress } = edit
@@ -86,9 +91,11 @@ const EditCustomer = () => {
     }, [])
 
     const renderProductName = (productId) => {
-        const productItem = item?.product?.find((val) => val._id === productId);
+        const productItem = product?.product?.find((val) => val._id === productId);
         return productItem?.name || '';
     };
+  
+
     return (
         <>
             < Navbar />
