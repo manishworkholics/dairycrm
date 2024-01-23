@@ -106,10 +106,10 @@ const DailyEntry = () => {
       <div className='container my-5 pb-5'>
         <div className='row'>
           <div className='col-md-12'>
-            <div className="card tbl-card mt-3">
-              <div className='d-flex align-items-center p-4'>
+            <div className="card tbl-card my-3">
+              <div className='card-date-selector p-4'>
                 <div className="card-heading">
-                  <h4 className='mb-0 me-3'>Selected Date: {selectedDate}</h4>
+                  <h4 className='mb-0 me-3'>Selected Date : {selectedDate}</h4>
                 </div>
                 <div className="">
                   <input
@@ -127,7 +127,7 @@ const DailyEntry = () => {
                       <th>S.no</th>
                       <th>Name</th>
                       <th>Product</th>
-                      <th>Unit</th>
+                      {/* <th>Unit</th> */}
                       <th>Today Quantity</th>
                       <th>Quantity</th>
                       <th>Quantity</th>
@@ -143,16 +143,16 @@ const DailyEntry = () => {
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{val?.name}</td>
-                        <td>{val?.product?.map((val) => {
+                        <td className='text-start'>{val?.product?.map((val) => {
                           return (
                             <p>{val?.product_name?.name},</p>
                           )
                         })}</td>
-                        <td>{val?.product?.map((val) => {
+                        {/* <td>{val?.product?.map((val) => {
                           return (
                             <p>{val?.product_name?.unit},</p>
                           )
-                        })}</td>
+                        })}</td> */}
                         <td>
                           {val?.product?.map((productVal) => {
                             const customerId = val._id;
@@ -183,7 +183,7 @@ const DailyEntry = () => {
               </div>
             </div>
             <div className='d-flex justify-content-end'>
-              <button type='button' className='btn btn-info my-5' onClick={addbulkentry}> Add Entry <span><i class="fa-solid fa-plus"></i></span></button>
+              <button type='button' className='btn btn-info my-lg-3 mt-md-3' onClick={addbulkentry}> Add Entry <span><i class="fa-solid fa-plus"></i></span></button>
             </div>
           </div>
         </div>
