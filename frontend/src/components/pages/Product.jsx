@@ -140,7 +140,7 @@ const Product = () => {
                       <th>S.no</th>
                       <th>Product</th>
                       <th>Product Rate</th>
-                      <th>Date</th>
+                    
                       <th className='text-center'>Action</th>
                     </tr>
                   </thead>
@@ -149,13 +149,13 @@ const Product = () => {
                       return (
                         <tr key={index}>
                           <td>{index + 1}</td>
-                          <td>{val.name}</td>
-                          <td>{val.price}/{val.unit}</td>
-                          <td>{dateFormat(val.createdAt)}</td>
+                          <td className='text-capitalize'>{val.name}</td>
+                          <td className='text-capitalize'>{val.price}/{val.unit}</td>
+                        
                           <td>
                             <div className='d-flex justify-content-center'>
-                              <button type="button" class="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>edit <span class="material-symbols-outlined">edit</span></button>
-                              <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
+                              <button type="button" class="btn btn-warning mx-1" onClick={() => { handleeditShow(val) }}>Edit <span class="material-symbols-outlined">Edit</span></button>
+                              <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>Delete <span class="material-symbols-outlined"> delete </span></button>
                             </div>
                           </td>
                         </tr>
@@ -197,10 +197,10 @@ const Product = () => {
                   <div class="mb-3 mt-3">
                     <label for="name" class="form-label" >Product Unit:</label>
                     <select class="form-select" name="unit" onChange={handleChange}>
-                      <option value="" disabled selected hidden>add unit</option>
+                      <option value="" disabled selected hidden>Add unit</option>
                       {unit?.data?.map((val, index) => {
                         return (
-                          <option key={index} value={val.name} >{val.name}</option>
+                          <option className='text-capitalize' key={index} value={val.name} >{val.name}</option>
                         )
                       })}
 
@@ -246,7 +246,7 @@ const Product = () => {
                       <option value="" disabled selected hidden>{edit.unit}</option>
                       {unit?.data?.map((val, index) => {
                         return (
-                          <option value={val.name} key={index}>{val.name}</option>
+                          <option className='text-capitalize' value={val.name} key={index}>{val.name}</option>
                         )
                       })}
 

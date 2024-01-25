@@ -130,7 +130,7 @@ const Reports = () => {
                       <option value="" disabled selected hidden>Select Name</option>
                       {data?.data?.map((val, index) => {
                         return (
-                          <option key={index} value={val._id}>{val.name}</option>
+                          <option className='text-capitalize' key={index} value={val._id}>{val.name}</option>
                         )
                       })}
                     </select>

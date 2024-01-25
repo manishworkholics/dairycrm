@@ -9,6 +9,7 @@ import Cutomer from './components/pages/Cutomer';
 import Reports from './components/pages/Reports';
 import DailyEntry from './components/pages/DailyEntry';
 import EditCustomer from './components/pages/EditCustomer';
+import Customerdetail from './components/pages/Customerdetail';
 
 
 const root = ReactDOM.createRoot(
@@ -22,6 +23,7 @@ root.render(
                 <Route index path="/home/product" element={<Product />} />
                 <Route index path="/home/customer" element={<Cutomer />} />
                 <Route index path="/home/edit-customer/:id" element={<EditCustomer />} />
+                <Route index path="/home/customer-detail/:id" element={<Customerdetail />} />
                 <Route index path="/home/report" element={<Reports />} />
                 <Route index path="/home/daily-entry" element={<DailyEntry />} />
                 <Route path='*' element={<PageNotFound />} />

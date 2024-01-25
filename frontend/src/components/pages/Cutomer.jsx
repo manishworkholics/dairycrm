@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import dateFormat from "dateformat";
+// import dateFormat from "dateformat";
 import { Modal } from "react-bootstrap";
 import Navbar from '../Template/Navbar'
 import { Link } from 'react-router-dom';
@@ -160,7 +160,7 @@ const Cutomer = () => {
                       <th>S.no</th>
                       <th>Name</th>
                       <th>Number</th>
-                      <th>Date</th>
+                      <th>Product</th>
                       <th className='text-center'>Action</th>
                     </tr>
                   </thead>
@@ -169,13 +169,14 @@ const Cutomer = () => {
                       return (
                         <tr key={index}>
                           <td>{index + 1}</td>
-                          <td>{val.name}</td>
-                          <td>{val.number}</td>
-                          <td>{dateFormat(val.createdAt)}</td>
+                          <td className='text-capitalize'>{val?.name}</td>
+                          <td>{val?.number}</td>
+                          <td className='text-capitalize'>{val?.product?.map((val) => <p>{val?.product_name?.name}</p>)}</td>
                           <td>
                             <div className='d-flex justify-content-center'>
-                              <Link to={`/home/edit-customer/${val?._id}`} state={{ data: val }} className="btn btn-warning mx-1" >edit <span class="material-symbols-outlined">edit</span></Link>
-                              <button type="button" className="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>delete <span class="material-symbols-outlined"> delete </span></button>
+                              <Link to={`/home/customer-detail/${val?._id}`} state={{ data: val }} className="btn btn-success mx-1" >View <span class="material-symbols-outlined">Edit</span></Link>
+                              <Link to={`/home/edit-customer/${val?._id}`} state={{ data: val }} className="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
+                              <button type="button" className="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>Delete <span class="material-symbols-outlined"> delete </span></button>
                             </div>
                           </td>
                         </tr>
@@ -212,7 +213,7 @@ const Cutomer = () => {
                 </div>
                 <div className="mb-3 mt-3">
                   <label htmlFor="name" className="form-label">Adress:</label>
-                  <input type="text" className="form-control" id="name" placeholder="Cutomer address" name="adress" value={post.adress} onChange={handleChange} />
+                  <input type="text" className="form-control" id="name" placeholder="Cutomer Address" name="adress" value={post.adress} onChange={handleChange} />
                 </div>
 
                 <div className="row">
@@ -223,7 +224,7 @@ const Cutomer = () => {
                       {product?.product?.map((val, index) => {
                         return (
                           <>
-                            <option key={index} value={val?._id} >{val.name}</option>
+                            <option className='text-capitalize' key={index} value={val?._id} >{val.name}</option>
                           </>
                         )
                       })}
@@ -257,8 +258,8 @@ const Cutomer = () => {
                         catArray.map((item, i) => {
                           return (
                             <tr key={i}>
-                              <td>{renderProductName(item.product_name)}</td>
-                              <td>{item.product_quantity}</td>
+                              <td className='text-capitalize'>{renderProductName(item.product_name)}</td>
+                              <td className='text-capitalize'>{item.product_quantity}</td>
                               <td className='d-flex justify-content-center'>
                                 <button onClick={() => updateCat(i)} className="delbtn btn btn-warning mx-1">
                                   <span className="material-symbols-outlined action-icon m-0">edit</span>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../Template/Navbar'
 import Home from './Home';
 
 const EditCustomer = () => {
+    const navigate = useNavigate()
     const [inputData, setInputData] = useState({ id: 1, product_name: '', product_quantity: '' })
     const usertoken = sessionStorage.getItem('token')
     const [product, setproduct] = useState();
@@ -81,6 +82,7 @@ const EditCustomer = () => {
         await response.json();
         if (response.status === 200) {
             alert("edit successfully");
+            navigate(-1)
         } else {
             alert("Invalid Credentials");
         }
@@ -128,15 +130,15 @@ const EditCustomer = () => {
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Cutomer Name :</label>
-                                <input type="text" className="form-control" id="name" name="name" value={edit.name} onChange={handleChanges} />
+                                <input type="text" className="form-control text-capitalize" id="name" name="name" value={edit.name} onChange={handleChanges} />
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Cutomer Number :</label>
-                                <input type="text" className="form-control" id="name" name="number" value={edit.number} onChange={handleChanges} />
+                                <input type="text" className="form-control text-capitalize" id="name" name="number" value={edit.number} onChange={handleChanges} />
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Cutomer Adress :</label>
-                                <input type="text" className="form-control" id="name" name="adress" value={edit.adress} onChange={handleChanges} />
+                                <input type="text" className="form-control text-capitalize" id="name" name="adress" value={edit.adress} onChange={handleChanges} />
                             </div>
                             <button type="submit" className="btn btn-info" onClick={upadateproduct}>Submit</button>
                         </div>
@@ -152,7 +154,7 @@ const EditCustomer = () => {
                                         {product?.product?.map((val, index) => {
                                             return (
                                                 <>
-                                                    <option key={index} value={val?._id}>{val.name}</option>
+                                                    <option className='text-capitalize' key={index} value={val?._id}>{val.name}</option>
                                                 </>
                                             )
                                         })}
@@ -186,7 +188,7 @@ const EditCustomer = () => {
                                             catArray && catArray.map((item, i) => {
                                                 return (
                                                     <tr key={i}>
-                                                        <td>{renderProductName(item.product_name)}</td>
+                                                        <td className='text-capitalize'>{renderProductName(item.product_name)}</td>
                                                         <td>{item.product_quantity}</td>
                                                         <td className='d-flex justify-content-center'>
                                                             <button className='delbtn btn btn-warning mx-1'>
