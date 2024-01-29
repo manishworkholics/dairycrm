@@ -465,3 +465,63 @@ body {
         font-size: 20px;
     }
 }
+
+
+/*-------------------------- Customer-Detail-CSS -----------------------*/
+.customer-detail-left-card{
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+.customer-detail-right-card{
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 12px;
+}
+.customer-detail-right-card .date-picker input{
+    font-size: 14px;
+}
+.customer-img{
+    position: relative;
+}
+.customer-img img{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: -55px;
+    left: 41%;
+}
+.customer-name{
+    padding-top: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.customer-name h5{
+    color: #2365ab;
+    font-family: "Poppins", Sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.customer-name h6{
+    color: gray;
+    font-family: "Poppins", Sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.customer-detail .table th{
+    width: 135px;
+}
+.customer-detail .table td{
+    width: 175px;
+}
+.customer-detail-tbl th{
+padding: 10px !important;
+}
+.tbl-blue-theme th:first-child{
+width: 65px;
+}
