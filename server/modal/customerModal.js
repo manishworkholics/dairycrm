@@ -11,7 +11,7 @@ const CustomerSchema = new mongoose.Schema({
     product: [
         {
             id: { type: String },
-            product_name: { type: mongoose.Schema.Types.ObjectId,ref: "Product" },
+            product_name: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
             product_quantity: { type: String },
         }
     ],
@@ -22,6 +22,15 @@ const CustomerSchema = new mongoose.Schema({
         }
     ],
     adress: {
+        type: String
+    },
+    totalamount: {
+        type: String
+    },
+    paidamount: {
+        type: String
+    },
+    dueamount: {
         type: String
     },
 }, { timestamps: true })
