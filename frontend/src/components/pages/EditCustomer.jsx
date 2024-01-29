@@ -11,7 +11,7 @@ const EditCustomer = () => {
     let location = useLocation();
     const { data } = location.state
     let { id } = useParams();
-    const [edit, setedit] = useState({ name: data.name, number: data.number, adress: data.adress });
+    const [edit, setedit] = useState({ name: data.name, number: data.number, adress: data.adress, totalamount: data?.totalamount, paidamount: data?.paidamount, dueamount: data?.dueamount });
     const item = data?.product?.map((val) => {
         return (
             { id: 1, product_name: val?.product_name?._id, product_quantity: val?.product_quantity }
@@ -72,11 +72,11 @@ const EditCustomer = () => {
     };
 
     const upadateproduct = async () => {
-        const { name, number, adress } = edit
+        const { name, number, adress, totalamount, paidamount, dueamount } = edit
         const fetchdata = fetch(`http://206.189.130.102:6060/api/v1/update-customer/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: name, number: number, adress: adress, product: catArray }),
+            body: JSON.stringify({ name: name, number: number, adress: adress, totalamount: totalamount, paidamount: paidamount, dueamount: dueamount, product: catArray }),
         })
         const response = await fetchdata;
         await response.json();
@@ -139,6 +139,18 @@ const EditCustomer = () => {
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Cutomer Adress :</label>
                                 <input type="text" className="form-control text-capitalize" id="name" name="adress" value={edit.adress} onChange={handleChanges} />
+                            </div>
+                            <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Total Amount :</label>
+                                <input type="text" className="form-control text-capitalize" id="name" name="totalamount" value={edit.totalamount} onChange={handleChanges} />
+                            </div>
+                            <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Paid Amount :</label>
+                                <input type="text" className="form-control text-capitalize" id="name" name="paidamount" value={edit.paidamount} onChange={handleChanges} />
+                            </div>
+                            <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Due Amount :</label>
+                                <input type="text" className="form-control text-capitalize" id="name" name="dueamount" value={edit.dueamount} onChange={handleChanges} />
                             </div>
                             <button type="submit" className="btn btn-info" onClick={upadateproduct}>Submit</button>
                         </div>

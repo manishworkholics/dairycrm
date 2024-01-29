@@ -129,13 +129,9 @@ const DailyEntry = () => {
                       <th>Product</th>
                       {/* <th>Unit</th> */}
                       <th>Today Quantity</th>
-                      <th>Quantity</th>
-                      <th>Quantity</th>
-                      <th>Quantity</th>
-                      <th>Quantity</th>
-                      <th>Quantity</th>
-                      <th>Quantity</th>
-                      <th>Quantity</th>
+                      {data?.data[0]?.dailyEntries.slice(0, 7).reverse().map((entry, index) => (
+                        <th key={index}>{new Date(entry.date).toLocaleDateString()}</th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
