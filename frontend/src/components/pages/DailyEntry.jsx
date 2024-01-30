@@ -79,6 +79,14 @@ const DailyEntry = () => {
       });
   };
 
+  const getLastSevenDates = () => {
+    // Assuming dailyEntries is already sorted by date
+    const lastSevenDates = data?.data[0]?.dailyEntries?.slice(-7).map((entry) => entry.date) || [];
+    return lastSevenDates.reverse();
+  };
+
+  const lastSevenDates = getLastSevenDates();
+
   if (!usertoken) {
     return <Home />
   }
@@ -92,7 +100,7 @@ const DailyEntry = () => {
             <div className="container">
               <div className="row">
                 <div className="col-12">
-                  <h2 className="banner-heading-h2">Daily Entry</h2>
+                  <h2 className="banner-heading-h2">Daily Entry </h2>
                   <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Daily Entry</h3>
                 </div>
               </div>
@@ -127,28 +135,18 @@ const DailyEntry = () => {
                       <th>S.no</th>
                       <th>Name</th>
                       <th>Product</th>
-                      {/* <th>Unit</th> */}
                       <th>Today Quantity</th>
-                      {data?.data[0]?.dailyEntries.slice(0, 7).reverse().map((entry, index) => (
-                        <th key={index}>{new Date(entry.date).toLocaleDateString()}</th>
+                      {lastSevenDates.map((date, index) => (
+                        <th key={index}>{new Date(date).toLocaleDateString()}</th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
-                    {data?.data?.map((val, index) => (
+                    {data?.data.map((val, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{val?.name}</td>
-                        <td className='text-start'>{val?.product?.map((val) => {
-                          return (
-                            <p>{val?.product_name?.name},</p>
-                          )
-                        })}</td>
-                        {/* <td>{val?.product?.map((val) => {
-                          return (
-                            <p>{val?.product_name?.unit},</p>
-                          )
-                        })}</td> */}
+                        <td className='text-start'>{val?.product?.map((productVal) => <p key={productVal._id}>{productVal?.product_name?.name},</p>)}</td>
                         <td>
                           {val?.product?.map((productVal) => {
                             const customerId = val._id;
@@ -157,6 +155,7 @@ const DailyEntry = () => {
 
                             return (
                               <input
+                                key={productId}
                                 type="number"
                                 className="form-control my-2"
                                 value={quantity}
@@ -165,13 +164,17 @@ const DailyEntry = () => {
                             );
                           })}
                         </td>
-                        {val?.dailyEntries[0] ? <td>{val?.dailyEntries[0]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
-                        {val?.dailyEntries[1] ? <td>{val?.dailyEntries[1]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
-                        {val?.dailyEntries[2] ? <td>{val?.dailyEntries[2]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
-                        {val?.dailyEntries[3] ? <td>{val?.dailyEntries[3]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
-                        {val?.dailyEntries[4] ? <td>{val?.dailyEntries[4]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
-                        {val?.dailyEntries[5] ? <td>{val?.dailyEntries[5]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
-                        {val?.dailyEntries[6] ? <td>{val?.dailyEntries[6]?.products?.map((val) => { return <p>{val?.quantity}</p> })}</td> : <td>0</td>}
+                        {lastSevenDates.map((date, index) => (
+                          <td key={index}>
+                            {val?.dailyEntries.find(entry => entry.date === date) ? (
+                              val?.dailyEntries.find(entry => entry.date === date)?.products?.map((entry) => (
+                                <p key={entry.type}>{entry?.quantity}</p>
+                              ))
+                            ) : (
+                              <p>0</p>
+                            )}
+                          </td>
+                        ))}
                       </tr>
                     ))}
                   </tbody>

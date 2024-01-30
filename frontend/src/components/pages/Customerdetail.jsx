@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
-// import dateFormat from "dateformat";
+import React, { useState } from 'react'
 import Navbar from '../Template/Navbar'
 import { useLocation } from 'react-router-dom';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import Home from './Home';
 
 const Customerdetail = () => {
@@ -31,7 +32,55 @@ const Customerdetail = () => {
 
     function clear() {
         window.location.reload()
-      }
+    }
+
+
+    const generateInvoice = (customerData, datas) => {
+        try {
+            // Log data for debugging
+            console.log("Customer Data:", customerData);
+            console.log("Data:", datas);
+
+            // Logic for generating the invoice using jsPDF and jspdf-autotable
+            const pdf = new jsPDF();
+
+            // Add content to the PDF
+            pdf.text("Invoice", 10, 10);
+            pdf.text("Customer Name: " + customerData.name, 10, 20);
+            pdf.text("Mobile No.: " + customerData.number, 10, 30);
+            pdf.text("Address: " + customerData.adress, 10, 40);
+            pdf.text("Invoice Date: " + new Date().toLocaleDateString(), 10, 50);
+
+            // Extract product data from nested structure
+            const productData = datas?.data?.dailyEntries?.flatMap(entry => entry.products || []);
+
+            // Add a table with product information
+            const columns = ["Product", "Quantity", "Price", "Total"];
+            pdf.autoTable({
+                head: [columns],
+                body: productData.map(product => [
+                    product.type,
+                    product.quantity,
+                    product.price,
+                    (parseFloat(product.quantity) || 0) * (parseFloat(product.price) || 0)
+                ]),
+                startY: 60,
+            });
+
+            // Calculate total amount
+            const totalAmount = productData.reduce((total, product) => total + (parseFloat(product.quantity) || 0) * (parseFloat(product.price) || 0), 0);
+
+            // Add a total amount at the end
+            pdf.text("Total Amount: ₹" + totalAmount.toFixed(2), 10, pdf.autoTable.previous.finalY + 10);
+
+            // Save or display the PDF
+            pdf.save("invoice.pdf");
+        } catch (error) {
+            // Log any errors during invoice generation
+            console.error("Invoice Generation Error:", error);
+        }
+    };
+
 
 
     if (!usertoken) {
@@ -104,18 +153,18 @@ const Customerdetail = () => {
                                 <div className="col-md-12 px-4">
                                     <div className="row">
                                         <div className='col-6 col-md-3 my-2 date-picker'>
-                                            <input class="form-control" type='date' placeholder='From' />
+                                            <input class="form-control" type='date' onChange={selectstartdate} />
                                         </div>
 
                                         <div className='col-6 col-md-3 my-2 date-picker'>
-                                            <input class="form-control" type='date' />
+                                            <input class="form-control" type='date' onChange={selectenddate} />
                                         </div>
 
                                         <div className='col-lg-6 col-md-12 my-2'>
                                             <div className='d-flex justify-content-around'>
                                                 <button className='btn btn-success rounded-pill px-4' onClick={getcustomerbyid}>Find</button>
                                                 <button className='btn btn-secondary rounded-pill px-4' onClick={clear}>clear</button>
-                                                <button className='btn btn-primary rounded-pill px-4'>Invoice</button>
+                                                <button className='btn btn-primary rounded-pill px-4' onClick={() => generateInvoice(data, datas)}>Invoice</button>
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +208,6 @@ const Customerdetail = () => {
                                                                 )
                                                             })}</td>
                                                             {val?.date === null ? 0 : <td>{val?.date.slice(0, 10)}</td>}
-
                                                         </tr>
                                                     )
                                                 })}
