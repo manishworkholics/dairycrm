@@ -245,7 +245,7 @@ const Cutomer = () => {
                   </div>
                 </div>
                 <div className="mb-3 mt-3">
-                  <table class="table">
+                  <table class="table w-100">
                     <thead className='tableBord cattable'>
                       <tr className='fcolor'>
                         <th>Product</th>

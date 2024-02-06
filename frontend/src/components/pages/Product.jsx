@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import dateFormat from "dateformat";
+// import dateFormat from "dateformat";
 import { Modal } from "react-bootstrap";
 import Navbar from '../Template/Navbar'
 import Home from './Home';
@@ -161,8 +161,6 @@ const Product = () => {
                         </tr>
                       )
                     })}
-
-
                   </tbody>
                 </table>
               </div>

@@ -134,10 +134,17 @@ const DailyEntry = () => {
                     <tr>
                       <th>S.no</th>
                       <th>Name</th>
-                      <th>Product</th>
-                      <th>Today Quantity</th>
+                      <th className='d-none-mobile'>Product</th>
+                      <th>Today Qty</th>
+                     
                       {lastSevenDates.map((date, index) => (
-                        <th key={index}>{new Date(date).toLocaleDateString()}</th>
+                        // new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+                        // new Date(date).toLocaleDateString('en-US', {  day: '2-digit', month: 'short', year: 'numeric' })
+                        //  <th key={index}>{new Date(date).toLocaleDateString('en-IN',{day: '2-digit', month: 'short', year: 'numeric' })}</th>
+                          <th key={index}>{new Date(date).toLocaleDateString('en-IN',{day: '2-digit' })} {new Date(date).toLocaleDateString('en-IN',{month: 'short'})}, {new Date(date).toLocaleDateString('en-IN',{ year: 'numeric' })}</th>
+                     
+
+                       
                       ))}
                     </tr>
                   </thead>
@@ -146,8 +153,8 @@ const DailyEntry = () => {
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{val?.name}</td>
-                        <td className='text-start'>{val?.product?.map((productVal) => <p key={productVal._id}>{productVal?.product_name?.name},</p>)}</td>
-                        <td>
+                        <td className='text-start d-none-mobile'>{val?.product?.map((productVal) => <p className='mb-2' key={productVal._id}>{productVal?.product_name?.name} <br /> </p>)}</td>
+                        <td className=''>
                           {val?.product?.map((productVal) => {
                             const customerId = val._id;
                             const productId = productVal.product_name._id;
@@ -157,7 +164,7 @@ const DailyEntry = () => {
                               <input
                                 key={productId}
                                 type="number"
-                                className="form-control my-2"
+                                className="form-control my-2 mx-auto"
                                 value={quantity}
                                 onChange={(e) => handleQuantityChange(customerId, productId, e.target.value)}
                               />

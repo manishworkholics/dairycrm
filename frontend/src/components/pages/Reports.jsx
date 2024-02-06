@@ -122,9 +122,9 @@ const Reports = () => {
         <div className='row'>
           <div className="card tbl-card mt-3">
             <div className="row">
-              <div className="col-md-12 px-4">
-                <div className="row">
-                  <div className='col-md-3 my-4'>
+              <div className="col-md-12 px-4 pt-4">
+                <div className="row g-3">
+                  <div className='col-md-3'>
 
                     <select class="form-select" onChange={selectcustomer}>
                       <option value="" disabled selected hidden>Select Name</option>
@@ -137,15 +137,15 @@ const Reports = () => {
 
                   </div>
 
-                  <div className='col-md-3 my-4'>
+                  <div className='col-md-3'>
                     <input class="form-control" type='date' onChange={selectstartdate} />
                   </div>
 
-                  <div className='col-md-3 my-4'>
+                  <div className='col-md-3'>
                     <input class="form-control" type='date' onChange={selectenddate} />
                   </div>
 
-                  <div className='col-lg-3 col-md-12 my-4'>
+                  <div className='col-lg-3 col-md-12'>
                     <div className='d-flex'>
                       <button className='btn btn-success rounded-pill mx-3 px-4' onClick={getcustomerbyid}>Find</button>
                       <button className='btn btn-secondary rounded-pill px-4' onClick={clear}>clear</button>

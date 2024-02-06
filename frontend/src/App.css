@@ -165,7 +165,7 @@ body {
 
 .card-heading h4 {
     color: #154171;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
     line-height: normal;
 }
@@ -278,16 +278,30 @@ body {
     overflow: hidden;
 }
 
-.tbl-blue-theme th {
+/* .tbl-blue-theme th {
     text-align: -webkit-match-parent;
     padding: 15px 30px !important;
     background: #154171 !important;
     color: #fff !important;
+} */
+.tbl-blue-theme th {
+    text-align: -webkit-match-parent;
+    background: #154171 !important;
+    color: #fff !important;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    vertical-align: middle;
 }
 
 .tbl-blue-theme td {
-    padding: 15px 30px !important;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
 }
+/* .tbl-blue-theme td {
+    padding: 15px 30px !important;
+} */
 
 .table .btn {
     border-radius: 50px;
@@ -306,9 +320,9 @@ body {
     background: #b0c9e5;
 }
 
-.w-max-content {
+/* .w-max-content {
     width: max-content;
-}
+} */
 
 .d-none-desktop {
     display: none;
@@ -333,6 +347,9 @@ body {
     display: flex;
     align-items: center;
 }
+td input{
+    width: 50% !important;
+}
 
 @media only screen and (max-width:767px) {
 
@@ -349,12 +366,12 @@ body {
     }
 
     .tbl-blue-theme td {
-        padding: 5px 20px !important;
+        padding: 5px 10px !important;
     }
-
+/* 
     .tbl-blue-theme th {
         padding: 15px 20px !important;
-    }
+    } */
 
     .btn {
         display: flex;
@@ -382,17 +399,17 @@ body {
         color: #fff;
         font-family: "Poppins", Sans-serif;
         font-size: 17px;
-        font-weight: 600;
+        font-weight: 500;
         text-transform: capitalize;
         margin-bottom: 25px;
     }
     .daily-entry-data-tbl{
         width: fit-content !important;
     }
-    .daily-entry-data-tbl th{
+    /* .daily-entry-data-tbl th{
         padding: 10px 12px !important;
         vertical-align: middle;
-    }
+    } */
     .daily-entry-data-tbl td{
         padding: 5px 10px !important;
         text-align: center;
@@ -402,10 +419,10 @@ body {
         line-height: 26px;
     }
     .tbl-blue-theme .form-control{
-        padding: 2px 10px;
+        padding: 2px 6px;
     }
     .card-heading h4 {
-        font-size: 20px;
+        font-size: 18px;
         line-height: 22px;
     }
     .card-date-selector{
@@ -413,6 +430,16 @@ body {
     }
     .card-date-selector .card-heading h4{
         margin-bottom: 10px !important;
+    }
+    .banner-heading-h2 {
+        font-size: 30px;
+        font-weight: 500;
+    }
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }
+    td input{
+        width: 100% !important;
     }
 }
 
