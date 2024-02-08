@@ -169,12 +169,12 @@ const Cutomer = () => {
                       return (
                         <tr key={index}>
                           <td>{index + 1}</td>
-                          <td className='text-capitalize'>{val?.name}</td>
+                          <td className='text-capitalize' style={{ cursor: 'pointer' }}><Link to={`/home/customer-detail/${val?._id}`} state={{ data: val }}>{val?.name}</Link></td>
                           <td>{val?.number}</td>
                           <td className='text-capitalize'>{val?.product?.map((val) => <p>{val?.product_name?.name}</p>)}</td>
                           <td>
                             <div className='d-flex justify-content-center'>
-                              <Link to={`/home/customer-detail/${val?._id}`} state={{ data: val }} className="btn btn-success mx-1" >View <span><i class="fa-regular fa-eye"></i></span></Link>
+                              {/* <Link to={`/home/customer-detail/${val?._id}`} state={{ data: val }} className="btn btn-success mx-1" >View <span><i class="fa-regular fa-eye"></i></span></Link> */}
                               <Link to={`/home/edit-customer/${val?._id}`} state={{ data: val }} className="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
                               <button type="button" className="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#myModal" onClick={() => { Setdeleteid(val._id) }}>Delete <span class="material-symbols-outlined"> delete </span></button>
                             </div>

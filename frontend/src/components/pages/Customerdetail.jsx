@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../Template/Navbar'
 import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
@@ -9,6 +9,15 @@ const Customerdetail = () => {
     let location = useLocation();
     const { data } = location.state
     const usertoken = sessionStorage.getItem('token')
+
+    const [currentDate, setCurrentDate] = useState('');
+
+    useEffect(() => {
+        const currentDate = new Date();
+        const options = { month: 'long', day: 'numeric', year: 'numeric' };
+        const formattedDate = currentDate.toLocaleDateString('en-US', options);
+        setCurrentDate(formattedDate);
+    }, []);
 
     const [datas, setDatas] = useState();
     const [startdate, setstartdate] = useState('');
@@ -117,7 +126,7 @@ const Customerdetail = () => {
                             </div>
                             <div className="customer-name">
                                 <h5>{data?.name}</h5>
-                                <h6>Author</h6>
+                                <h6>{currentDate}</h6>
                             </div>
                             <div className="customer-detail">
                                 <table class="table">
@@ -131,15 +140,23 @@ const Customerdetail = () => {
                                             <td>{data?.adress}</td>
                                         </tr>
                                         <tr>
+                                            <th scope="row">Total Quantity</th>
+                                            <td>{data?.product?.map((val) => val?.product_quantity)}</td>
+                                        </tr>
+                                        <tr>
                                             <th scope="row">Total Amount</th>
                                             <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.totalamount || 0} </td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Paid Amount</th>
+                                            <th scope="row">Past Due Amount</th>
+                                            <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.totalamount || 0} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Last Paid</th>
                                             <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.paidamount || 0}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Due Amount </th>
+                                            <th scope="row">Remaining Amount </th>
                                             <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.dueamount || 0}</td>
                                         </tr>
                                     </tbody>
