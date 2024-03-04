@@ -26,7 +26,7 @@ const DailyEntry = () => {
 
   
   const getcustomer = () => {
-    fetch(`http://localhost:6060/api/v1/get-customer`)
+    fetch(`http://206.189.130.102:6060/api/v1/get-customer`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -173,7 +173,7 @@ console.log(data);
                         <td className='text-center'>
                         {val.product.map(product => (
                             <li key={product._id._id}>
-                                <p>Product Name: {product?.product_name?.name}</p>
+                                <p>{product?.product_name?.name}</p>
                                
                             </li>
                         ))}
