@@ -12,7 +12,7 @@ const Navbar = () => {
                 <div className="container ">
                     <nav className="navbar navbar-expand-sm">
                         <div className="container-fluid">
-                            <Link className="navbar-brand" to="#">Dairy</Link>
+                            <Link className="navbar-brand" to="#">Sudama Dairy</Link>
                             <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                                 <span className="text-white"><i class="fa-solid fa-bars-staggered"></i></span>
                             </button>

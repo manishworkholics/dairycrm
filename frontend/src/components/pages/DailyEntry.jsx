@@ -6,18 +6,31 @@ const DailyEntry = () => {
   const usertoken = sessionStorage.getItem('token')
   const [data, setData] = useState();
   const [selectedDate, setSelectedDate] = useState('');
+  const [today, settoday] = useState(getTodayDate());
   const [editedQuantities, setEditedQuantities] = useState({});
 
+  function getTodayDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${day}-${month}-${year}`;
+  }
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
   };
+
+
+
+
+  
   const getcustomer = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-customer`)
+    fetch(`http://localhost:6060/api/v1/get-customer`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-
+console.log(data);
         // Populate editedQuantities with default quantities from data
         const defaultQuantities = {};
         data.data.forEach((customer) => {
@@ -34,7 +47,9 @@ const DailyEntry = () => {
 
   useEffect(() => {
     getcustomer();
+    getTodayDate();
   }, []);
+
 
   const handleQuantityChange = (customerId, productId, newValue) => {
     setEditedQuantities(prevState => ({
@@ -46,15 +61,16 @@ const DailyEntry = () => {
     }));
   };
 
+  console.log(data)
   const addbulkentry = () => {
     if (!selectedDate) {
       return alert("please select data first")
     }
     const bulkData = {
       dailyEntries: data?.data?.map((val) => ({
-        id: val._id,
+        id: val?._id,
         date: selectedDate,
-        products: val.product?.map((productVal) => ({
+        products: val?.product?.map((productVal) => ({
           type: productVal?.product_name?.name,
           price: productVal?.product_name?.price,
           quantity: editedQuantities[val._id]?.[productVal.product_name._id] || productVal?.product_quantity
@@ -81,8 +97,8 @@ const DailyEntry = () => {
 
   const getLastSevenDates = () => {
     // Assuming dailyEntries is already sorted by date
-    const lastSevenDates = data?.data[0]?.dailyEntries?.slice(-7).map((entry) => entry.date) || [];
-    return lastSevenDates.reverse();
+    const lastSevenDates = data?.data[0]?.dailyEntries?.slice(-7).map((entry) => entry?.date) || [];
+    return lastSevenDates?.reverse();
   };
 
   const lastSevenDates = getLastSevenDates();
@@ -127,6 +143,7 @@ const DailyEntry = () => {
                     onChange={handleDateChange}
                   />
                 </div>
+                <h4 className='mb-0 me-3'>Today Date : {today}</h4>
               </div>
               <div className="table-responsive">
                 <table className="table table-striped tbl-blue-theme w-max-content daily-entry-data-tbl">
@@ -136,15 +153,15 @@ const DailyEntry = () => {
                       <th>Name</th>
                       <th className='d-none-mobile'>Product</th>
                       <th>Today Qty</th>
-                     
-                      {lastSevenDates.map((date, index) => (
+
+                      {lastSevenDates?.map((date, index) => (
                         // new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
                         // new Date(date).toLocaleDateString('en-US', {  day: '2-digit', month: 'short', year: 'numeric' })
                         //  <th key={index}>{new Date(date).toLocaleDateString('en-IN',{day: '2-digit', month: 'short', year: 'numeric' })}</th>
-                          <th key={index}>{new Date(date).toLocaleDateString('en-IN',{day: '2-digit' })} {new Date(date).toLocaleDateString('en-IN',{month: 'short'})}, {new Date(date).toLocaleDateString('en-IN',{ year: 'numeric' })}</th>
-                     
+                        <th key={index}>{new Date(date).toLocaleDateString('en-IN', { day: '2-digit' })}/{new Date(date).toLocaleDateString('en-IN', { month: 'numeric' })}</th>
 
-                       
+
+
                       ))}
                     </tr>
                   </thead>
@@ -153,12 +170,19 @@ const DailyEntry = () => {
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{val?.name}</td>
-                        <td className='text-start d-none-mobile'>{val?.product?.map((productVal) => <p className='mb-2' key={productVal._id}>{productVal?.product_name?.name} <br /> </p>)}</td>
+                        <td className='text-center'>
+                        {val.product.map(product => (
+                            <li key={product._id._id}>
+                                <p>Product Name: {product?.product_name?.name}</p>
+                               
+                            </li>
+                        ))}
+                        </td>
                         <td className=''>
                           {val?.product?.map((productVal) => {
-                            const customerId = val._id;
-                            const productId = productVal.product_name._id;
-                            const quantity = editedQuantities[customerId]?.[productId] || productVal.product_quantity;
+                            const customerId = val?._id;
+                            const productId = productVal?.product_name?._id;
+                            const quantity = editedQuantities[customerId]?.[productId] || productVal?.product_quantity;
 
                             return (
                               <input
@@ -173,9 +197,9 @@ const DailyEntry = () => {
                         </td>
                         {lastSevenDates.map((date, index) => (
                           <td key={index}>
-                            {val?.dailyEntries.find(entry => entry.date === date) ? (
-                              val?.dailyEntries.find(entry => entry.date === date)?.products?.map((entry) => (
-                                <p key={entry.type}>{entry?.quantity}</p>
+                            {val?.dailyEntries.find(entry => entry?.date === date) ? (
+                              val?.dailyEntries.find(entry => entry?.date === date)?.products?.map((entry) => (
+                                <p key={entry?.type}>{entry?.quantity}</p>
                               ))
                             ) : (
                               <p>0</p>
