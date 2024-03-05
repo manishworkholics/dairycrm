@@ -100,6 +100,7 @@ const Cutomer = () => {
         setData(data)
       })
   }
+  console.log(data)
 
   function deleteproduct(_id) {
     fetch(`http://localhost:6060/api/v1/delete-customer/${_id}`, {
@@ -161,6 +162,7 @@ const Cutomer = () => {
                       <th>Name</th>
                       <th>Number</th>
                       <th>Product</th>
+                      <th>Due Amount</th>
                       <th className='text-center'>Action</th>
                     </tr>
                   </thead>
@@ -172,6 +174,7 @@ const Cutomer = () => {
                           <td className='text-capitalize' style={{ cursor: 'pointer' }}><Link to={`/home/customer-detail/${val?._id}`} state={{ data: val }}>{val?.name}</Link></td>
                           <td>{val?.number}</td>
                           <td className='text-capitalize'>{val?.product?.map((val) => <p>{val?.product_name?.name}</p>)}</td>
+                          <td>{val?.dueamount}</td>
                           <td>
                             <div className='d-flex justify-content-center'>
                               {/* <Link to={`/home/customer-detail/${val?._id}`} state={{ data: val }} className="btn btn-success mx-1" >View <span><i class="fa-regular fa-eye"></i></span></Link> */}

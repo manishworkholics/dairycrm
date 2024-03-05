@@ -144,21 +144,21 @@ const Customerdetail = () => {
                                             <td>{data?.product?.map((val) => val?.product_quantity)}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Total Amount</th>
-                                            <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.totalamount || 0} </td>
+                                            <th scope="row">Daily Amount</th>
+                                            <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.dailyentryamount || 0} </td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Past Due Amount</th>
-                                            <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.totalamount || 0} </td>
+                                            <th scope="row">Total Due Amount</th>
+                                            <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.dueamount || 0} </td>
                                         </tr>
-                                        <tr>
+                                        {/* <tr>
                                             <th scope="row">Last Paid</th>
                                             <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.paidamount || 0}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Remaining Amount </th>
+                                        </tr> */}
+                                        {/* <tr>
+                                            <th scope="row">Grand Total of month</th>
                                             <td><span><i class="fa-solid fa-indian-rupee-sign"></i></span> {data?.dueamount || 0}</td>
-                                        </tr>
+                                        </tr> */}
                                     </tbody>
                                 </table>
                             </div>

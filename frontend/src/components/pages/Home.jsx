@@ -50,7 +50,7 @@ const Home = () => {
             <div className="container">
               <div className="row">
                 <div className="col-12 my-5">
-                  <Link className="navbar-brand" to="#">Dairy</Link>
+                  <Link className="navbar-brand" to="#">Sudama Dairy</Link>
                 </div>
               </div>
             </div>
