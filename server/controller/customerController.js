@@ -12,13 +12,14 @@ exports.addcustomer = async (req, res) => {
     res.send(error);
   }
 };
-
+// 
 exports.getcustomer = async (req, res) => {
   try {
     const data = await customer.find().populate({
       path: "product",
       populate: { path: "product_name", model: "Product" }, // Assuming the field is named 'product_id' in dailyEntries
-    });
+    }); 
+  
     res.status(200).json({
       success: true,
       data,
@@ -210,8 +211,8 @@ exports.generateBillForMonthByUserId = async (req, res) => {
       const endDate = new Date(year, month + 1, 0);
       // CURRENT MONTH KE LIYEEEEE END===============
 
-        //  const fromdate = "2024-02-01";
-        //  const todate = "2024-02-31";
+      //  const fromdate = "2024-02-01";
+      //  const todate = "2024-02-31";
       const fromdate = startDate;
       const todate = endDate;
 
@@ -268,8 +269,7 @@ exports.userpayamount = async (req, res) => {
       },
       { new: true }
     );
-
-    res.status(200).send("Update successfully");
+    res.status(200).send({message:"Update successfully"});
   } catch (error) {
     res.status(400).send(error);
   }
