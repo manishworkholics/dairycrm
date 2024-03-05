@@ -64,7 +64,7 @@ const Cutomer = () => {
   };
 
   const getproduct = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-product`)
+    fetch(`http://localhost:6060/api/v1/get-product`)
       .then((res) => {
         return res.json()
       }).then((data) => {
@@ -75,7 +75,7 @@ const Cutomer = () => {
   const addcustomer = async (e) => {
     e.preventDefault();
     const { name, number, adress } = post
-    const fetchdata = fetch('http://206.189.130.102:6060/api/v1/add-customer', {
+    const fetchdata = fetch('http://localhost:6060/api/v1/add-customer', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: name, number: number, adress: adress, product: catArray }),
@@ -93,7 +93,7 @@ const Cutomer = () => {
   }
 
   const getcustomer = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-customer`)
+    fetch(`http://localhost:6060/api/v1/get-customer`)
       .then((res) => {
         return res.json()
       }).then((data) => {
@@ -102,7 +102,7 @@ const Cutomer = () => {
   }
 
   function deleteproduct(_id) {
-    fetch(`http://206.189.130.102:6060/api/v1/delete-customer/${_id}`, {
+    fetch(`http://localhost:6060/api/v1/delete-customer/${_id}`, {
       method: "DELETE"
     }).then((result) => {
       result.json().then((res) => {

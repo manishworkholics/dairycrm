@@ -28,7 +28,7 @@ const Home = () => {
       alert('Please enter All the fields');
       return;
     }
-    const fetchdata = fetch("http://206.189.130.102:6060/api/v1/login", requestOptions);
+    const fetchdata = fetch("http://localhost:6060/api/v1/login", requestOptions);
     const response = await fetchdata;
     const res = await response.json();
 

@@ -24,7 +24,7 @@ const EditCustomer = () => {
     const [bolin, setBolin] = useState(false)
 
     const getproduct = () => {
-        fetch(`http://206.189.130.102:6060/api/v1/get-product`)
+        fetch(`http://localhost:6060/api/v1/get-product`)
             .then((res) => {
                 return res.json()
             }).then((data) => {
@@ -73,7 +73,7 @@ const EditCustomer = () => {
 
     const upadateproduct = async () => {
         const { name, number, adress, totalamount, paidamount, dueamount } = edit
-        const fetchdata = fetch(`http://206.189.130.102:6060/api/v1/update-customer/${id}`, {
+        const fetchdata = fetch(`http://localhost:6060/api/v1/update-customer/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: name, number: number, adress: adress, totalamount: totalamount, paidamount: paidamount, dueamount: dueamount, product: catArray }),

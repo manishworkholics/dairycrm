@@ -13,7 +13,7 @@ const DailyEntry = () => {
     setSelectedDate(event.target.value);
   };
   const getcustomer = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-customer`)
+    fetch(`http://localhost:6060/api/v1/get-customer`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -71,7 +71,7 @@ const DailyEntry = () => {
       redirect: 'follow'
     };
 
-    fetch("http://206.189.130.102:6060/api/v1/milk-buyer/bulk-daily-product-entry", requestOptions)
+    fetch("http://localhost:6060/api/v1/milk-buyer/bulk-daily-product-entry", requestOptions)
       .then((res) => res.text())
       .then((data) => {
         alert(data);

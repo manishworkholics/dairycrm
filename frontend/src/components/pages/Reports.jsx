@@ -13,7 +13,7 @@ const Reports = () => {
   const [enddate, setenddate] = useState('');
 
   const getcustomer = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-customer`)
+    fetch(`http://localhost:6060/api/v1/get-customer`)
       .then((res) => {
         return res.json()
       }).then((data) => {
@@ -22,7 +22,7 @@ const Reports = () => {
   }
 
   const getcustomerbyid = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-customer/${customer}?startDate=${startdate}&endDate=${enddate}`)
+    fetch(`http://localhost:6060/api/v1/get-customer/${customer}?startDate=${startdate}&endDate=${enddate}`)
       .then((res) => {
         return res.json()
       }).then((data) => {

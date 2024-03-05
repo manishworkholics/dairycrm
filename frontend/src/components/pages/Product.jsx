@@ -37,7 +37,7 @@ const Product = () => {
   const addproduct = async (e) => {
     e.preventDefault();
     const { name, price, unit } = post
-    const fetchdata = fetch('http://206.189.130.102:6060/api/v1/add-product', {
+    const fetchdata = fetch('http://localhost:6060/api/v1/add-product', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: name, price: price, unit: unit }),
@@ -56,7 +56,7 @@ const Product = () => {
 
   const upadateproduct = async (id) => {
     const { name, price, unit } = edit
-    const fetchdata = fetch(`http://206.189.130.102:6060/api/v1/update-product/${id}`, {
+    const fetchdata = fetch(`http://localhost:6060/api/v1/update-product/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: name, price: price, unit: unit }),
@@ -72,7 +72,7 @@ const Product = () => {
   }
 
   const getproduct = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-product`)
+    fetch(`http://localhost:6060/api/v1/get-product`)
       .then((res) => {
         return res.json()
       }).then((data) => {
@@ -80,7 +80,7 @@ const Product = () => {
       })
   }
   const getunit = () => {
-    fetch(`http://206.189.130.102:6060/api/v1/get-unit`)
+    fetch(`http://localhost:6060/api/v1/get-unit`)
       .then((res) => {
         return res.json()
       }).then((data) => {
@@ -89,7 +89,7 @@ const Product = () => {
   }
 
   function deleteproduct(_id) {
-    fetch(`http://206.189.130.102:6060/api/v1/delete-product/${_id}`, {
+    fetch(`http://localhost:6060/api/v1/delete-product/${_id}`, {
       method: "DELETE"
     }).then((result) => {
       result.json().then((res) => {
